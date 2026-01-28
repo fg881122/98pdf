@@ -21,10 +21,8 @@
         .font-serif { font-family: 'Playfair Display', serif; }
         .text-accent { color: var(--accent-color); }
         
-        /* 隱藏滾動條 */
         ::-webkit-scrollbar { width: 0px; }
 
-        /* 自定義游標 (深色版) */
         #cursor {
             width: 12px; height: 12px;
             background: rgba(26, 26, 26, 0.8);
@@ -33,7 +31,6 @@
             transition: transform 0.1s ease-out;
         }
 
-        /* 揭幕動畫 */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -44,7 +41,6 @@
             transform: translateY(0);
         }
 
-        /* 導覽列遮罩 */
         #menu-overlay {
             clip-path: circle(0% at 95% 5%);
             transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
@@ -58,6 +54,11 @@
         .editorial-border {
             border: 1px solid rgba(26, 26, 26, 0.1);
         }
+
+        /* 增加圖片平滑度 */
+        .project-card img {
+            transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
@@ -67,109 +68,151 @@
     <div id="menu-overlay" class="fixed inset-0 z-[60] flex items-center justify-center">
         <nav class="text-center space-y-8">
             <a href="#work" class="menu-link block text-5xl font-serif hover:italic hover:opacity-50 transition-all">Archive</a>
-            <a href="#" class="menu-link block text-5xl font-serif hover:italic hover:opacity-50 transition-all">Vision</a>
-            <a href="#" class="menu-link block text-5xl font-serif hover:italic hover:opacity-50 transition-all">Contact</a>
+            <a href="#about" class="menu-link block text-5xl font-serif hover:italic hover:opacity-50 transition-all">Vision</a>
+            <a href="#contact" class="menu-link block text-5xl font-serif hover:italic hover:opacity-50 transition-all">Contact</a>
         </nav>
     </div>
 
     <nav class="fixed top-0 w-full z-[70] flex justify-between items-center px-8 py-8 mix-blend-difference">
         <div class="text-xl font-serif tracking-widest uppercase text-white">M.A</div>
-        <button id="menu-btn" class="space-y-1.5 group focus:outline-none">
+        <button id="menu-btn" class="space-y-1.5 group focus:outline-none p-2">
             <div id="bar1" class="w-8 h-px bg-white transition-all"></div>
             <div id="bar2" class="w-8 h-px bg-white transition-all"></div>
         </button>
     </nav>
 
     <section class="min-h-screen flex items-center px-8 md:px-20 relative pt-20">
-        <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-t border-b border-zinc-200 py-20 relative">
+        <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center border-t border-b border-zinc-200 py-24 relative">
             
             <div class="md:col-span-1 hidden md:block">
-                <p class="rotate-90 origin-left text-[8px] tracking-[0.5em] uppercase opacity-40 whitespace-nowrap">Est. 2026 Portfolio</p>
+                <p class="rotate-90 origin-left text-[8px] tracking-[0.5em] uppercase opacity-40 whitespace-nowrap">Visual Archive 2026</p>
             </div>
 
-            <div class="col-span-12 md:col-span-7 z-10 reveal">
-                <h1 class="text-[12vw] md:text-[8vw] font-serif leading-[0.85] tracking-tighter text-zinc-900">
+            <div class="col-span-12 md:col-span-6 z-10 reveal">
+                <h1 class="text-[12vw] md:text-[8.5vw] font-serif leading-[0.85] tracking-tighter text-zinc-900">
                     Aesthetic <br>
                     <span class="italic text-accent">Disruption</span>
                 </h1>
-                <div class="mt-12 flex items-start gap-8">
-                    <div class="w-12 h-px bg-accent mt-3"></div>
+                <div class="mt-16 flex items-start gap-6 border-l border-zinc-200 pl-6">
                     <p class="text-xs md:text-sm font-light tracking-[0.2em] uppercase opacity-70 max-w-sm leading-relaxed text-zinc-800">
-                        Independent Graphic Designer & Visual Strategist. <br>
-                        Based in Taipei — Focusing on Editorial identity and art direction.
+                        Independent Designer — Specializing in Brand Storytelling and Editorial Aesthetics. Exploring the intersection of digital and physical space.
                     </p>
                 </div>
             </div>
             
-            <div class="col-span-12 md:col-span-4 relative reveal" style="transition-delay: 200ms;">
-                <div class="aspect-[3/4] overflow-hidden editorial-border p-4 bg-white shadow-sm">
-                    <div class="w-full h-full overflow-hidden relative group">
+            <div class="col-span-12 md:col-span-5 relative reveal" style="transition-delay: 200ms;">
+                <div class="editorial-border p-4 bg-white shadow-sm">
+                    <div class="aspect-[3/4] overflow-hidden relative group">
                         <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1000" 
-                             alt="Featured Work" 
-                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100">
+                             alt="Hero Image" 
+                             class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105">
                     </div>
                 </div>
-                <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 hidden md:block">
-                    <div class="w-24 h-24 rounded-full border border-zinc-200 flex items-center justify-center text-[8px] tracking-widest text-center px-2 uppercase opacity-40">
-                        Selected <br> Works
-                    </div>
-                </div>
+                <div class="absolute -bottom-6 -left-6 text-6xl font-serif text-zinc-200 opacity-50 pointer-events-none">©01</div>
             </div>
         </div>
     </section>
 
-    <section class="py-40 px-8 md:px-20 bg-white/30" id="work">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-y-32 md:gap-x-12">
+    <section class="py-40 px-8 md:px-20" id="work">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-y-40 md:gap-x-12">
             
-            <div class="md:col-span-7 reveal project-card group cursor-pointer">
+            <div class="md:col-span-8 reveal project-card group cursor-pointer">
                 <div class="overflow-hidden aspect-video editorial-border p-2 bg-white relative">
                     <div class="w-full h-full overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover transition-transform duration-[1.5s]">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
                     </div>
                     <div class="absolute inset-2 bg-zinc-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
                         <span class="font-serif italic text-xl tracking-widest text-zinc-900">View Archive</span>
                     </div>
                 </div>
-                <div class="mt-6 flex justify-between items-baseline">
-                    <h3 class="font-serif text-2xl uppercase tracking-wider text-zinc-900">Visual Identity 01</h3>
+                <div class="mt-8 flex justify-between items-baseline border-b border-zinc-100 pb-4">
+                    <h3 class="font-serif text-2xl uppercase tracking-wider text-zinc-900 italic">01. Fragrance System</h3>
                     <span class="text-[10px] tracking-widest opacity-40 uppercase">Art Direction</span>
                 </div>
             </div>
 
-            <div class="md:col-span-4 md:col-start-9 md:mt-40 reveal project-card group cursor-pointer" style="transition-delay: 150ms;">
+            <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" style="transition-delay: 150ms;">
                 <div class="overflow-hidden aspect-[2/3] editorial-border p-2 bg-white">
                     <div class="w-full h-full overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover transition-transform duration-[1.5s]">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
                     </div>
                 </div>
-                <div class="mt-6">
-                    <h3 class="font-serif text-2xl uppercase tracking-wider text-zinc-900">Minimal Form</h3>
-                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Digital Composition</span>
+                <div class="mt-8">
+                    <h3 class="font-serif text-xl uppercase tracking-wider text-zinc-900">02. Minimal Geometry</h3>
+                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Graphic Study</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-5 md:col-start-2 reveal project-card group cursor-pointer">
+                <div class="overflow-hidden aspect-square editorial-border p-2 bg-white">
+                    <div class="w-full h-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <h3 class="font-serif text-xl uppercase tracking-wider text-zinc-900">03. Typographic Poster</h3>
+                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Print Archive</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-6 md:col-start-7 md:-mt-20 reveal project-card group cursor-pointer">
+                <div class="overflow-hidden aspect-[4/3] editorial-border p-2 bg-white">
+                    <div class="w-full h-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1634942537034-2531766767d7?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="mt-8 text-right">
+                    <h3 class="font-serif text-xl uppercase tracking-wider text-zinc-900">04. Kinetic Vision</h3>
+                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Motion Design</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-10 md:col-start-2 reveal project-card group cursor-pointer">
+                <div class="overflow-hidden aspect-[21/9] editorial-border p-2 bg-white relative">
+                    <div class="w-full h-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-110">
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-between items-center">
+                    <h3 class="font-serif text-2xl uppercase tracking-wider text-zinc-900">05. Editorial Narrative</h3>
+                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Magazine Layout</span>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 md:col-start-1 reveal project-card group cursor-pointer">
+                <div class="overflow-hidden aspect-square editorial-border p-2 bg-white">
+                    <div class="w-full h-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <h3 class="font-serif text-xl uppercase tracking-wider text-zinc-900">06. Branding Abstract</h3>
+                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Conceptual Work</span>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <footer class="py-20 px-8 md:px-20 border-t border-zinc-200">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 text-zinc-900">
-            <div>
-                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-4">Let's Connect</p>
-                <a href="mailto:hello@visualarchive.com" class="font-serif text-3xl md:text-5xl hover:text-accent transition-all duration-500">hello@visualarchive.com</a>
+    <footer class="py-24 px-8 md:px-20 border-t border-zinc-200" id="contact">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-16 text-zinc-900">
+            <div class="reveal">
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-6 italic">Let's Connect</p>
+                <a href="mailto:hello@visualarchive.com" class="font-serif text-4xl md:text-6xl hover:text-accent transition-all duration-500 underline decoration-zinc-200 hover:decoration-accent underline-offset-12">hello@visualarchive.com</a>
             </div>
-            <div class="flex gap-8 text-[10px] tracking-[0.2em] uppercase font-light">
+            <div class="flex gap-12 text-[10px] tracking-[0.2em] uppercase font-light reveal">
                 <a href="#" class="hover:text-accent transition-colors">Instagram</a>
                 <a href="#" class="hover:text-accent transition-colors">Behance</a>
             </div>
         </div>
-        <div class="mt-20 text-[8px] tracking-widest opacity-30 flex justify-between text-zinc-900">
+        <div class="mt-24 text-[8px] tracking-widest opacity-30 flex justify-between text-zinc-900 border-t border-zinc-100 pt-8">
             <span>©2026 ARCHIVE ALL RIGHTS RESERVED.</span>
-            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:opacity-100 transition-opacity uppercase">Back to Top ↑</button>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:opacity-100 transition-opacity uppercase cursor-pointer">Back to Top ↑</button>
         </div>
     </footer>
 
     <script>
-        // 1. 自定義游標 (深色適配)
+        // 1. 自定義游標
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px';
@@ -205,7 +248,7 @@
         menuBtn.addEventListener('click', toggleMenu);
         menuLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-        // 3. 滾動揭幕
+        // 3. 滾動揭幕觀察者
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
