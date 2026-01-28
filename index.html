@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Archive | Design Portfolio 2026</title>
+    <title>Visual Archive | Visual Designer & Marketing Planner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FAF9F6; /* 經典米白色 */
+            --bg-color: #FAF9F6;
             --text-color: #1a1a1a;
             --accent-color: #800020;
         }
@@ -31,47 +31,37 @@
             transition: transform 0.1s ease-out;
         }
 
-        /* 內容揭幕動畫 */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 1; transform: translateY(0);
         }
 
+        /* 假分頁 Modal 樣式 */
+        #project-modal {
+            position: fixed; inset: 0;
+            background-color: var(--bg-color);
+            z-index: 200; display: none;
+            overflow-y: auto;
+        }
+        
         #menu-overlay {
             clip-path: circle(0% at 95% 5%);
             transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
             background-color: var(--text-color);
             color: var(--bg-color);
         }
-        #menu-overlay.open {
-            clip-path: circle(150% at 95% 5%);
-        }
+        #menu-overlay.open { clip-path: circle(150% at 95% 5%); }
 
-        .editorial-border {
-            border: 1px solid rgba(26, 26, 26, 0.08);
-        }
+        .editorial-border { border: 1px solid rgba(26, 26, 26, 0.08); }
 
-        /* Behance Style Hover */
-        .project-card .img-container img {
-            transition: transform 1.8s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        .project-card:hover .img-container img {
-            transform: scale(1.08);
-        }
-
-        /* 開場動畫樣式 */
         #loader {
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background-color: var(--bg-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             z-index: 1000;
             transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
@@ -86,9 +76,40 @@
 
     <div id="loader">
         <div class="loader-text-wrapper">
-            <h1 id="loader-text" class="font-serif text-5xl md:text-7xl italic tracking-tight text-zinc-900">
+            <h1 id="loader-text" class="font-serif text-5xl md:text-7xl italic tracking-tight">
                 Portfolio <span class="not-italic opacity-30">—2026</span>
             </h1>
+        </div>
+    </div>
+
+    <div id="project-modal" class="p-8 md:p-20">
+        <div class="flex justify-between items-start mb-20">
+            <h2 id="modal-title" class="text-5xl md:text-7xl font-serif italic text-accent">Project Title</h2>
+            <button onclick="closeModal()" class="text-[10px] tracking-[0.4em] uppercase hover:text-accent transition-colors">Close ✕</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div class="md:col-span-8">
+                <div id="modal-img" class="aspect-video bg-zinc-100 editorial-border mb-12"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-80">
+                    <div>
+                        <p class="font-bold mb-4 uppercase tracking-widest text-accent">專案背景 / Background</p>
+                        <p id="modal-bg">這裡填寫專案目的，例如：提升品牌在萬聖節期間的曝光率。</p>
+                    </div>
+                    <div>
+                        <p class="font-bold mb-4 uppercase tracking-widest text-accent">擔任角色 / Role</p>
+                        <p id="modal-role">企劃＋設計＋執行，包含 HTML/CSS 網頁撰寫。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-4 border-l border-zinc-200 pl-8">
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8">商業成效 / Impact</p>
+                <div id="modal-impact" class="space-y-12">
+                    <div>
+                        <h4 class="text-5xl font-serif italic mb-2">+25%</h4>
+                        <p class="text-[10px] uppercase tracking-widest opacity-60">活動報名人數提升</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -96,9 +117,9 @@
 
     <div id="menu-overlay" class="fixed inset-0 z-[60] flex items-center justify-center">
         <nav class="text-center space-y-12">
-            <a href="#work" class="menu-link block text-6xl font-serif hover:italic hover:opacity-50 transition-all">Archive</a>
-            <a href="#" class="menu-link block text-6xl font-serif hover:italic hover:opacity-50 transition-all">Studio</a>
-            <a href="#" class="menu-link block text-6xl font-serif hover:italic hover:opacity-50 transition-all">Inquiry</a>
+            <a href="#about" class="menu-link block text-5xl font-serif hover:italic transition-all">About</a>
+            <a href="#work" class="menu-link block text-5xl font-serif hover:italic transition-all">Work</a>
+            <a href="#contact" class="menu-link block text-5xl font-serif hover:italic transition-all">Contact</a>
         </nav>
     </div>
 
@@ -113,135 +134,115 @@
     <section class="min-h-screen flex items-center px-8 md:px-20 relative pt-20">
         <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center border-t border-b border-zinc-200 py-24 relative">
             <div class="md:col-span-1 hidden md:block">
-                <p class="rotate-90 origin-left text-[8px] tracking-[0.6em] uppercase opacity-30 whitespace-nowrap italic">Visual Archive ©2026</p>
+                <p class="rotate-90 origin-left text-[8px] tracking-[0.6em] uppercase opacity-30 whitespace-nowrap italic">Visual Designer & Marketing Planner</p>
             </div>
-
-            <div class="col-span-12 md:col-span-7 z-10 reveal">
-                <span class="text-[10px] tracking-[0.4em] uppercase text-accent font-bold mb-6 block">Selected Projects</span>
-                <h1 class="text-[12vw] md:text-[8.5vw] font-serif leading-[0.85] tracking-tighter text-zinc-900">
-                    Aesthetic <br>
-                    <span class="italic text-accent">Disruption</span>
+            <div class="col-span-12 md:col-span-8 z-10 reveal">
+                <span class="text-[10px] tracking-[0.4em] uppercase text-accent font-bold mb-6 block">— 以行銷思維驅動視覺設計</span>
+                <h1 class="text-[10vw] md:text-[7vw] font-serif leading-[0.9] tracking-tighter text-zinc-900">
+                    Visual Strategy <br>
+                    <span class="italic text-accent">Marketing Focused</span>
                 </h1>
-                <div class="mt-16 flex items-start gap-8 border-l border-zinc-200 pl-8">
-                    <div class="max-w-md">
-                        <p class="text-xs md:text-sm font-light tracking-wide leading-relaxed text-zinc-700">
-                            獨立平面設計師與視覺策略師，專注於品牌敘事與編輯美學。透過理性的結構與感性的視覺，在數位與實體空間中建立深層連結。
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-span-12 md:col-span-4 relative reveal" style="transition-delay: 200ms;">
-                <div class="editorial-border p-6 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.02)]">
-                    <div class="aspect-[3/4] overflow-hidden relative group">
-                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1000" 
-                             alt="Featured" 
-                             class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0">
-                    </div>
+                <div class="mt-16 flex flex-wrap gap-8">
+                    <a href="#work" class="px-8 py-4 border border-zinc-900 text-[10px] uppercase tracking-widest hover:bg-zinc-900 hover:text-white transition-all">View Archive</a>
+                    <a href="#contact" class="px-8 py-4 bg-accent text-white text-[10px] uppercase tracking-widest hover:opacity-80 transition-all">Contact Me</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-40 px-8 md:px-20" id="work">
+    <section id="about" class="py-40 px-8 md:px-20 bg-white/40">
+        <div class="max-w-4xl reveal">
+            <h2 class="text-xs tracking-[0.5em] uppercase text-accent mb-12">01 / About Me</h2>
+            <p class="font-serif text-3xl md:text-5xl leading-tight mb-12">
+                我不只是一位設計師，更是一位 <span class="italic">問題解決者</span>。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-70 font-light">
+                <p>憑藉在品牌代理商的跨職能經驗，我擅長將複雜的商業需求轉化為精準的視覺語言。透過數據觀察與行銷邏輯，我所製作的視覺不只是美觀，更致力於達成品牌 KPI。</p>
+                <p>目前積極進修英語與海外職場趨勢，致力於提供具備國際視野與在地行銷力結合的視覺服務。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="py-40 px-8 md:px-20">
+        <h2 class="text-xs tracking-[0.5em] uppercase text-accent mb-20 reveal">02 / Selected Works</h2>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-y-48 md:gap-x-16 items-start">
             
-            <div class="md:col-span-8 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-[16/9] editorial-border p-3 bg-white relative img-container">
-                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover">
+            <div class="md:col-span-8 reveal project-card group cursor-pointer" onclick="openModal('Social Campaign', '透過視覺優化提升轉單率', '企劃 + 執行', '+15% Conversion')">
+                <div class="overflow-hidden aspect-[16/10] editorial-border p-3 bg-white relative">
+                    <div class="w-full h-full bg-zinc-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105">
+                    </div>
                 </div>
-                <div class="mt-10 flex flex-col md:flex-row justify-between border-b border-zinc-100 pb-6">
+                <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
                     <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">01 / Branding</span>
-                        <h3 class="font-serif text-3xl text-zinc-900">Visual Identity System</h3>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Social Media</span>
+                        <h3 class="font-serif text-3xl">社群行銷素材組</h3>
                     </div>
-                    <div class="mt-4 md:mt-0 text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right">
-                        Services: Art Direction, Typography <br> Year: 2025
-                    </div>
+                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose">View Case Study ↑</p>
                 </div>
             </div>
 
-            <div class="md:col-span-4 md:mt-80 reveal project-card group cursor-pointer" style="transition-delay: 150ms;">
-                <div class="overflow-hidden aspect-[3/4] editorial-border p-3 bg-white img-container">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+            <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" onclick="openModal('Commercial Photography', '產品攝影與修圖', '攝影 + 去背修圖', '100% 品牌風格一致性')">
+                <div class="overflow-hidden aspect-[3/4] editorial-border p-3 bg-white">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0">
                 </div>
                 <div class="mt-8">
-                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">02 / Digital</span>
-                    <h3 class="font-serif text-2xl text-zinc-900">Structural Silence</h3>
-                    <p class="text-[11px] font-light mt-4 opacity-50 leading-relaxed">探索空間與負空間的實驗性數位視覺作品。</p>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Photography</span>
+                    <h3 class="font-serif text-2xl">商品去背與情境攝影</h3>
                 </div>
             </div>
-
-            <div class="md:col-span-5 md:col-start-2 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-square editorial-border p-3 bg-white img-container">
-                    <img src="https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
-                </div>
-                <div class="mt-8">
-                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">03 / Print</span>
-                    <h3 class="font-serif text-2xl text-zinc-900">Editorial Layout Concept</h3>
-                </div>
-            </div>
-
-            <div class="md:col-span-6 md:col-start-7 md:-mt-20 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-[4/3] editorial-border p-3 bg-white img-container">
-                    <img src="https://images.unsplash.com/photo-1634942537034-2531766767d7?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
-                </div>
-                <div class="mt-8 text-right">
-                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">04 / Kinetic</span>
-                    <h3 class="font-serif text-2xl text-zinc-900">Abstract Motion Study</h3>
-                </div>
-            </div>
-
-            <div class="md:col-span-10 md:col-start-2 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-[21/9] editorial-border p-3 bg-white img-container relative">
-                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=1500" class="w-full h-full object-cover group-hover:scale-110">
-                </div>
-                <div class="mt-10 flex justify-between items-center">
-                    <h3 class="font-serif text-3xl text-zinc-900 italic">05 / Noir Magazine</h3>
-                    <div class="flex gap-4">
-                        <span class="text-[8px] tracking-widest border border-zinc-200 px-3 py-1 uppercase opacity-50">Concept</span>
-                        <span class="text-[8px] tracking-widest border border-zinc-200 px-3 py-1 uppercase opacity-50">Layout</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="md:col-span-4 md:col-start-1 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-square editorial-border p-3 bg-white img-container">
-                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
-                </div>
-                <div class="mt-8">
-                    <h3 class="font-serif text-xl uppercase tracking-wider text-zinc-900 italic">06 / Meta-Space</h3>
-                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Graphic Experiment</span>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <footer class="py-32 px-8 md:px-20 border-t border-zinc-200">
+    <section class="py-40 px-8 md:px-20 border-t border-zinc-200 bg-zinc-900 text-white">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div class="md:col-span-4 reveal">
+                <h2 class="text-xs tracking-[0.5em] uppercase text-accent mb-12 italic">03 / Expertise</h2>
+            </div>
+            <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-20 reveal">
+                <div>
+                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-accent underline-offset-8">Design & Code</h4>
+                    <ul class="text-[11px] tracking-[0.2em] uppercase space-y-4 opacity-70">
+                        <li>Ps / Ai / Id / Figma</li>
+                        <li>HTML / CSS / JavaScript</li>
+                        <li>AI Workflow (Image & Copy Gen)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-accent underline-offset-8">Marketing</h4>
+                    <ul class="text-[11px] tracking-[0.2em] uppercase space-y-4 opacity-70">
+                        <li>Social Content Strategy</li>
+                        <li>Event Planning</li>
+                        <li>Branding Identity</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-32 px-8 md:px-20 border-t border-zinc-200">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
             <div class="reveal">
-                <p class="text-[10px] tracking-[0.4em] uppercase opacity-30 mb-8 font-bold">New Business</p>
-                <a href="mailto:hello@mastudio.com" class="font-serif text-4xl md:text-6xl hover:text-accent transition-all duration-500 block underline underline-offset-[16px] decoration-zinc-200 hover:decoration-accent">
-                    hello@mastudio.com
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-30 mb-8 font-bold">Start a Conversation</p>
+                <a href="mailto:hello@visualarchive.com" class="font-serif text-4xl md:text-6xl hover:text-accent transition-all duration-500 block underline underline-offset-[16px] decoration-zinc-200 hover:decoration-accent">
+                    hello@visualarchive.com
                 </a>
             </div>
-            <div class="flex flex-col md:items-end gap-10 reveal">
+            <div class="flex flex-col md:items-end gap-10 reveal text-zinc-900">
                 <div class="flex gap-12 text-[10px] tracking-[0.3em] uppercase font-bold">
-                    <a href="#" class="hover:text-accent transition-colors">Behance</a>
-                    <a href="#" class="hover:text-accent transition-colors">Instagram</a>
+                    <a href="#" class="hover:opacity-50 transition-opacity">LinkedIn</a>
+                    <a href="#" class="hover:opacity-50 transition-opacity">Behance</a>
                 </div>
-                <p class="text-[8px] tracking-[0.2em] opacity-30">BASED IN TAIPEI. AVAILABLE FOR GLOBAL PROJECTS.</p>
+                <p class="text-[8px] tracking-[0.2em] opacity-30">BASED IN TAIPEI. 2026 ARCHIVE.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // 開場動畫邏輯
+        // 開場動畫
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             const loaderText = document.getElementById('loader-text');
-
             setTimeout(() => { loaderText.style.transform = 'translateY(0)'; }, 300);
             setTimeout(() => { loader.style.transform = 'translateY(-100%)'; }, 2200);
             setTimeout(() => {
@@ -251,47 +252,40 @@
             }, 3200);
         });
 
-        // 自定義游標
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        document.querySelectorAll('a, button, .project-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(5)';
-                cursor.style.background = 'rgba(128, 0, 32, 0.15)'; 
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursor.style.background = 'rgba(26, 26, 26, 0.8)';
-            });
-        });
-
-        // 導覽控制
-        const menuBtn = document.getElementById('menu-btn');
-        const menuOverlay = document.getElementById('menu-overlay');
-        const menuLinks = document.querySelectorAll('.menu-link');
-        const bars = [document.getElementById('bar1'), document.getElementById('bar2')];
-
-        function toggleMenu() {
-            menuOverlay.classList.toggle('open');
-            bars[0].classList.toggle('rotate-45');
-            bars[0].classList.toggle('translate-y-1.5');
-            bars[1].classList.toggle('-rotate-45');
-            bars[1].classList.toggle('-translate-y-0.5');
-            document.body.classList.toggle('overflow-hidden');
+        // 假分頁 Modal 控制
+        function openModal(title, bg, role, impact) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-bg').innerText = bg;
+            document.getElementById('modal-role').innerText = role;
+            document.getElementById('modal-impact').innerHTML = `<div><h4 class="text-5xl font-serif italic mb-2">${impact.split(' ')[0]}</h4><p class="text-[10px] uppercase tracking-widest opacity-60">${impact.split(' ').slice(1).join(' ')}</p></div>`;
+            document.getElementById('project-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
 
-        menuBtn.addEventListener('click', toggleMenu);
-        menuLinks.forEach(link => link.addEventListener('click', toggleMenu));
+        function closeModal() {
+            document.getElementById('project-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
-        // 揭幕觀察者
+        // 游標
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+        });
+
+        // 導覽
+        const menuBtn = document.getElementById('menu-btn');
+        const menuOverlay = document.getElementById('menu-overlay');
+        function toggleMenu() {
+            menuOverlay.classList.toggle('open');
+            document.body.classList.toggle('overflow-hidden');
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+        document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', toggleMenu));
+
+        // 觀察者
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
     </script>
 </body>
