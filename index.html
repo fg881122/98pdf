@@ -42,7 +42,6 @@
             transform: translateY(0);
         }
 
-        /* 漢堡選單遮罩 */
         #menu-overlay {
             clip-path: circle(0% at 95% 5%);
             transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
@@ -65,7 +64,7 @@
             transform: scale(1.08);
         }
 
-        /* --- 新增：網頁開場動畫樣式 --- */
+        /* 開場動畫樣式 */
         #loader {
             position: fixed;
             inset: 0;
@@ -76,16 +75,16 @@
             z-index: 1000;
             transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        .loader-text-wrapper {
-            overflow: hidden;
-        }
+        .loader-text-wrapper { overflow: hidden; }
         #loader-text {
             transform: translateY(100%);
             transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
     </style>
 </head>
-<body class="antialiased overflow-hidden"> <div id="loader">
+<body class="antialiased overflow-hidden">
+
+    <div id="loader">
         <div class="loader-text-wrapper">
             <h1 id="loader-text" class="font-serif text-5xl md:text-7xl italic tracking-tight text-zinc-900">
                 Portfolio <span class="not-italic opacity-30">—2026</span>
@@ -114,18 +113,17 @@
     <section class="min-h-screen flex items-center px-8 md:px-20 relative pt-20">
         <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center border-t border-b border-zinc-200 py-24 relative">
             <div class="md:col-span-1 hidden md:block">
-                <p class="rotate-90 origin-left text-[8px] tracking-[0.6em] uppercase opacity-30 whitespace-nowrap">Visual Archive ©2026</p>
+                <p class="rotate-90 origin-left text-[8px] tracking-[0.6em] uppercase opacity-30 whitespace-nowrap italic">Visual Archive ©2026</p>
             </div>
 
             <div class="col-span-12 md:col-span-7 z-10 reveal">
+                <span class="text-[10px] tracking-[0.4em] uppercase text-accent font-bold mb-6 block">Selected Projects</span>
                 <h1 class="text-[12vw] md:text-[8.5vw] font-serif leading-[0.85] tracking-tighter text-zinc-900">
                     Aesthetic <br>
                     <span class="italic text-accent">Disruption</span>
                 </h1>
-                <div class="mt-16 flex items-start gap-8">
-                    <div class="w-16 h-px bg-accent mt-3 opacity-50"></div>
-                    <div class="max-w-sm">
-                        <p class="text-[10px] tracking-[0.3em] uppercase opacity-40 mb-4 font-bold">About the Studio</p>
+                <div class="mt-16 flex items-start gap-8 border-l border-zinc-200 pl-8">
+                    <div class="max-w-md">
                         <p class="text-xs md:text-sm font-light tracking-wide leading-relaxed text-zinc-700">
                             獨立平面設計師與視覺策略師，專注於品牌敘事與編輯美學。透過理性的結構與感性的視覺，在數位與實體空間中建立深層連結。
                         </p>
@@ -137,13 +135,8 @@
                 <div class="editorial-border p-6 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.02)]">
                     <div class="aspect-[3/4] overflow-hidden relative group">
                         <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1000" 
-                             alt="Hero" 
+                             alt="Featured" 
                              class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0">
-                    </div>
-                </div>
-                <div class="absolute -top-12 -right-12 hidden lg:block">
-                    <div class="w-32 h-32 rounded-full border border-zinc-200 flex items-center justify-center text-[7px] tracking-[0.3em] text-center px-4 uppercase opacity-50 leading-loose">
-                        Art Direction & <br> Visual Identity
                     </div>
                 </div>
             </div>
@@ -154,19 +147,16 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-y-48 md:gap-x-16 items-start">
             
             <div class="md:col-span-8 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-[16/10] editorial-border p-3 bg-white relative img-container">
+                <div class="overflow-hidden aspect-[16/9] editorial-border p-3 bg-white relative img-container">
                     <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-zinc-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 </div>
-                <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="mt-10 flex flex-col md:flex-row justify-between border-b border-zinc-100 pb-6">
                     <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">— 01 / Branding</span>
-                        <h3 class="font-serif text-3xl text-zinc-900">Ephemeral Essence</h3>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">01 / Branding</span>
+                        <h3 class="font-serif text-3xl text-zinc-900">Visual Identity System</h3>
                     </div>
-                    <div class="md:text-right">
-                        <p class="text-[11px] font-light leading-relaxed opacity-60 max-w-xs md:ml-auto">
-                            為高端香氛品牌打造的視覺系統。結合極簡幾何與古典排版，傳遞時間流逝的靜謐感。
-                        </p>
+                    <div class="mt-4 md:mt-0 text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right">
+                        Services: Art Direction, Typography <br> Year: 2025
                     </div>
                 </div>
             </div>
@@ -176,11 +166,55 @@
                     <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
                 </div>
                 <div class="mt-8">
-                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">— 02 / Digital</span>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">02 / Digital</span>
                     <h3 class="font-serif text-2xl text-zinc-900">Structural Silence</h3>
                     <p class="text-[11px] font-light mt-4 opacity-50 leading-relaxed">探索空間與負空間的實驗性數位視覺作品。</p>
                 </div>
             </div>
+
+            <div class="md:col-span-5 md:col-start-2 reveal project-card group cursor-pointer">
+                <div class="overflow-hidden aspect-square editorial-border p-3 bg-white img-container">
+                    <img src="https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                </div>
+                <div class="mt-8">
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">03 / Print</span>
+                    <h3 class="font-serif text-2xl text-zinc-900">Editorial Layout Concept</h3>
+                </div>
+            </div>
+
+            <div class="md:col-span-6 md:col-start-7 md:-mt-20 reveal project-card group cursor-pointer">
+                <div class="overflow-hidden aspect-[4/3] editorial-border p-3 bg-white img-container">
+                    <img src="https://images.unsplash.com/photo-1634942537034-2531766767d7?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                </div>
+                <div class="mt-8 text-right">
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">04 / Kinetic</span>
+                    <h3 class="font-serif text-2xl text-zinc-900">Abstract Motion Study</h3>
+                </div>
+            </div>
+
+            <div class="md:col-span-10 md:col-start-2 reveal project-card group cursor-pointer">
+                <div class="overflow-hidden aspect-[21/9] editorial-border p-3 bg-white img-container relative">
+                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=1500" class="w-full h-full object-cover group-hover:scale-110">
+                </div>
+                <div class="mt-10 flex justify-between items-center">
+                    <h3 class="font-serif text-3xl text-zinc-900 italic">05 / Noir Magazine</h3>
+                    <div class="flex gap-4">
+                        <span class="text-[8px] tracking-widest border border-zinc-200 px-3 py-1 uppercase opacity-50">Concept</span>
+                        <span class="text-[8px] tracking-widest border border-zinc-200 px-3 py-1 uppercase opacity-50">Layout</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 md:col-start-1 reveal project-card group cursor-pointer">
+                <div class="overflow-hidden aspect-square editorial-border p-3 bg-white img-container">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                </div>
+                <div class="mt-8">
+                    <h3 class="font-serif text-xl uppercase tracking-wider text-zinc-900 italic">06 / Meta-Space</h3>
+                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Graphic Experiment</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -203,31 +237,21 @@
     </footer>
 
     <script>
-        // --- 新增：網頁開場動畫邏輯 ---
+        // 開場動畫邏輯
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             const loaderText = document.getElementById('loader-text');
 
-            // 1. 開場文字滑入
-            setTimeout(() => {
-                loaderText.style.transform = 'translateY(0)';
-            }, 300);
-
-            // 2. 整個遮罩向上捲走
-            setTimeout(() => {
-                loader.style.transform = 'translateY(-100%)';
-            }, 2200);
-
-            // 3. 動畫結束後移除組件並恢復捲動
+            setTimeout(() => { loaderText.style.transform = 'translateY(0)'; }, 300);
+            setTimeout(() => { loader.style.transform = 'translateY(-100%)'; }, 2200);
             setTimeout(() => {
                 document.body.classList.remove('overflow-hidden');
                 loader.remove();
-                // 觸發首屏 Reveal 動畫
                 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
             }, 3200);
         });
 
-        // 1. 自定義游標
+        // 自定義游標
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px';
@@ -245,7 +269,7 @@
             });
         });
 
-        // 2. 導覽開關
+        // 導覽控制
         const menuBtn = document.getElementById('menu-btn');
         const menuOverlay = document.getElementById('menu-overlay');
         const menuLinks = document.querySelectorAll('.menu-link');
@@ -263,14 +287,12 @@
         menuBtn.addEventListener('click', toggleMenu);
         menuLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-        // 3. 滾動揭幕觀察者
+        // 揭幕觀察者
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
-
-        // 注意：為了配合 Loader，我們在 JS 的 window.load 事件中再啟動觀察者
     </script>
 </body>
 </html>
