@@ -7,32 +7,44 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-cream: #f9f7f2;
+            --text-dark: #1a1a1a;
+            --accent: #800020;
+        }
         body {
-            background-color: #0a0a0a;
-            color: #ffffff;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
             cursor: none;
+            overflow-x: hidden;
         }
         .font-serif { font-family: 'Playfair Display', serif; }
-        .text-accent { color: #800020; }
+        .text-accent { color: var(--accent); }
+        .bg-accent { background-color: var(--accent); }
         
+        /* 自定義游標：在淺色背景下使用深色 */
         #cursor {
-            width: 20px; height: 20px;
-            background: rgba(255,255,255,0.8);
+            width: 12px; height: 12px;
+            background: var(--text-dark);
             border-radius: 50%;
             position: fixed; pointer-events: none; z-index: 9999;
-            transition: transform 0.15s ease-out, background 0.3s;
+            transition: transform 0.2s ease-out, background 0.3s;
         }
 
+        /* 滾動條美化 */
         ::-webkit-scrollbar { width: 0px; }
 
+        /* 揭幕動畫：增加一點模糊感讓過渡更高級 */
         .reveal {
             opacity: 0;
+            filter: blur(5px);
             transform: translateY(40px);
             transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .reveal.active {
             opacity: 1;
+            filter: blur(0);
             transform: translateY(0);
         }
 
@@ -45,223 +57,162 @@
             clip-path: circle(150% at 95% 5%);
         }
 
-        /* 滾動引導線動畫 */
-        @keyframes scrollLine {
-            0% { transform: scaleY(0); transform-origin: top; }
-            50% { transform: scaleY(1); transform-origin: top; }
-            51% { transform: scaleY(1); transform-origin: bottom; }
-            100% { transform: scaleY(0); transform-origin: bottom; }
-        }
-        .scroll-indicator {
-            height: 60px; width: 1px;
-            background: rgba(255,255,255,0.2);
-            position: relative; overflow: hidden;
-        }
-        .scroll-indicator::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; animation: scrollLine 2s infinite;
+        /* 垂直文字裝飾 */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
         }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body class="antialiased">
 
     <div id="cursor"></div>
 
-    <div id="menu-overlay" class="fixed inset-0 bg-zinc-900 z-[60] flex items-center justify-center">
-        <nav class="text-center space-y-8">
-            <a href="#work" class="menu-link block text-5xl font-serif hover:italic hover:text-accent transition-all">Work</a>
-            <a href="#about" class="menu-link block text-5xl font-serif hover:italic hover:text-accent transition-all">Philosophy</a>
-            <a href="#contact" class="menu-link block text-5xl font-serif hover:italic hover:text-accent transition-all">Contact</a>
+    <div id="menu-overlay" class="fixed inset-0 bg-[#1a1a1a] text-[#f9f7f2] z-[60] flex items-center justify-center">
+        <nav class="text-center space-y-12">
+            <a href="#work" class="block text-6xl font-serif hover:italic hover:text-red-400 transition-all">Selected Works</a>
+            <a href="#contact" class="block text-6xl font-serif hover:italic hover:text-red-400 transition-all">Connect</a>
         </nav>
     </div>
 
-    <nav class="fixed top-0 w-full z-[70] flex justify-between items-center px-8 py-6 mix-blend-difference">
-        <div class="text-xl font-serif tracking-widest uppercase cursor-pointer">M.A</div>
-        <button id="menu-btn" class="space-y-1.5 group focus:outline-none p-2">
-            <div id="bar1" class="w-8 h-px bg-white transition-all"></div>
-            <div id="bar2" class="w-8 h-px bg-white transition-all"></div>
+    <nav class="fixed top-0 w-full z-[70] flex justify-between items-center px-10 py-8">
+        <div class="text-xl font-serif tracking-[0.3em] uppercase mix-blend-difference">M.A</div>
+        <button id="menu-btn" class="space-y-2 group focus:outline-none z-50">
+            <div id="bar1" class="w-10 h-[1px] bg-[#1a1a1a] mix-blend-difference transition-all duration-500"></div>
+            <div id="bar2" class="w-10 h-[1px] bg-[#1a1a1a] mix-blend-difference transition-all duration-500"></div>
         </button>
     </nav>
 
-    <section class="min-h-screen flex flex-col justify-center px-8 md:px-20 relative pt-20 overflow-hidden">
-        <div class="grid grid-cols-12 gap-4 items-end">
-            <div class="col-span-12 lg:col-span-8 z-10 reveal">
-                <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 mb-4 block">Portfolio Vol. 01</span>
-                <h1 class="text-[12vw] md:text-[8vw] font-serif leading-[0.85] tracking-tighter">
-                    Aesthetic <br>
-                    <span class="italic text-accent">Disruption</span>
-                </h1>
-                <p class="mt-8 text-xs md:text-sm font-light tracking-[0.3em] uppercase opacity-60 max-w-md leading-relaxed">
-                    Graphic Designer — Specialize in Editorial Design, Brand Identity & Social Content Strategy.
-                </p>
-            </div>
-            
-            <div class="col-span-12 lg:col-span-4 mt-12 lg:mt-0 relative reveal" style="transition-delay: 200ms;">
-                <div class="aspect-[3/4] bg-zinc-900 overflow-hidden relative group">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1000" 
-                         alt="Hero Image" 
-                         class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105">
-                </div>
-                <div class="absolute -bottom-10 -right-10 text-[10vw] font-serif text-white opacity-[0.03] pointer-events-none select-none">CREATIVE</div>
-            </div>
+    <section class="min-h-screen flex items-center justify-center px-8 md:px-20 relative pt-10">
+        <div class="absolute left-10 top-1/2 -translate-y-1/2 hidden lg:block">
+            <p class="vertical-text text-[10px] tracking-[0.6em] uppercase opacity-30">Portfolio — Edition 2026</p>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
-            <span class="text-[8px] tracking-[0.3em] uppercase opacity-40">Scroll</span>
-            <div class="scroll-indicator"></div>
+        <div class="grid grid-cols-12 gap-0 items-center w-full max-w-7xl">
+            <div class="col-span-12 lg:col-span-9 z-10 reveal">
+                <h1 class="text-[14vw] lg:text-[10vw] font-serif leading-[0.8] tracking-tighter">
+                    Aesthetic <br>
+                    <span class="italic text-accent lg:ml-[15vw]">Disruption</span>
+                </h1>
+                <div class="mt-12 lg:ml-[25vw] max-w-xs">
+                    <p class="text-xs font-light tracking-[0.2em] uppercase opacity-70 leading-loose border-l border-zinc-300 pl-6">
+                        Independent Graphic Designer. <br>
+                        Specializing in Editorial Systems & Visual Identity.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-span-12 lg:col-span-5 lg:-ml-20 mt-12 lg:mt-0 relative reveal" style="transition-delay: 300ms;">
+                <div class="aspect-[3/4] bg-zinc-200 overflow-hidden relative group">
+                    <img src="https://images.unsplash.com/photo-1515462277126-2dd0c162007a?auto=format&fit=crop&q=80&w=1000" 
+                         alt="Hero Image" 
+                         class="w-full h-full object-cover grayscale brightness-105 hover:grayscale-0 transition-all duration-1000">
+                    <div class="absolute inset-0 border-[30px] border-[#f9f7f2]/20 group-hover:border-transparent transition-all duration-700"></div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section class="py-40 px-8 md:px-20" id="work">
-        <div class="flex justify-between items-end mb-20 reveal">
-            <h2 class="text-4xl font-serif italic">Selected Works</h2>
-            <p class="text-[10px] tracking-widest opacity-40">2024 — 2026</p>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 reveal">
+            <div class="mb-8 md:mb-0">
+                <h2 class="text-xs tracking-[0.6em] uppercase opacity-40 mb-4">Selected Works</h2>
+                <p class="font-serif text-5xl italic">The Archive</p>
+            </div>
+            <div class="w-full md:w-1/3 h-[1px] bg-zinc-200"></div>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-y-32 md:gap-x-12">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-y-40 md:gap-x-16">
             
-            <div class="md:col-span-8 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-video bg-zinc-900 relative">
-                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover transition-transform duration-[1.5s]">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-center justify-center">
-                        <span class="font-serif italic text-2xl tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-500">View Archive</span>
-                    </div>
+            <div class="md:col-span-7 reveal project-card group">
+                <div class="overflow-hidden aspect-[16/10] bg-zinc-100 relative cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                    <div class="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 </div>
-                <div class="mt-6 flex justify-between items-baseline border-b border-zinc-900 pb-4">
-                    <h3 class="font-serif text-2xl uppercase tracking-wider">01. Culinary Identity</h3>
-                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Food Branding</span>
+                <div class="mt-8 flex justify-between items-baseline">
+                    <h3 class="font-serif text-3xl italic tracking-wide">01. Fragrance System</h3>
+                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Identity / 2025</span>
                 </div>
             </div>
 
-            <div class="md:col-span-4 md:mt-40 reveal project-card group cursor-pointer" style="transition-delay: 150ms;">
-                <div class="overflow-hidden aspect-[3/5] bg-zinc-900 relative">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover transition-transform duration-[1.5s]">
+            <div class="md:col-span-4 md:col-start-9 md:mt-60 reveal project-card group">
+                <div class="overflow-hidden aspect-[3/4] bg-zinc-100 relative cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover transition-transform duration-[2s]">
                 </div>
-                <div class="mt-6">
-                    <h3 class="font-serif text-xl uppercase tracking-wider">02. Minimal Structure</h3>
-                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Digital Art</span>
-                </div>
-            </div>
-
-            <div class="md:col-span-5 md:col-start-2 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-square bg-zinc-900 relative">
-                    <img src="https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
-                </div>
-                <div class="mt-6">
-                    <h3 class="font-serif text-xl uppercase tracking-wider">03. Social Strategy</h3>
-                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Content Design</span>
-                </div>
-            </div>
-
-            <div class="md:col-span-6 md:col-start-7 md:-mt-20 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-[4/3] bg-zinc-900 relative">
-                    <img src="https://images.unsplash.com/photo-1634942537034-2531766767d7?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
-                </div>
-                <div class="mt-6 flex flex-col items-end">
-                    <h3 class="font-serif text-xl uppercase tracking-wider">04. Kinetic Vision</h3>
-                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Motion Graphics</span>
-                </div>
-            </div>
-
-            <div class="md:col-span-10 md:col-start-2 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-[21/9] bg-zinc-900 relative">
-                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover transition-all duration-[2s] group-hover:scale-110">
-                </div>
-                <div class="mt-6 flex justify-between items-center">
-                    <h3 class="font-serif text-2xl uppercase tracking-wider italic">05. Editorial Layout</h3>
-                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Magazine Design</span>
-                </div>
-            </div>
-
-             <div class="md:col-span-4 md:col-start-1 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-square bg-zinc-900 relative">
-                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
-                </div>
-                <div class="mt-6">
-                    <h3 class="font-serif text-xl uppercase tracking-wider">06. Visual Metaphor</h3>
-                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Creative Branding</span>
+                <div class="mt-8">
+                    <h3 class="font-serif text-2xl tracking-wide uppercase">02. Abstract Forms</h3>
+                    <span class="text-[10px] tracking-widest opacity-40 uppercase">Art Direction</span>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section id="about" class="py-40 bg-white text-black px-8 md:px-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
-            <div class="reveal">
-                <h2 class="text-xs tracking-[0.5em] uppercase mb-8 opacity-50 italic">Philosophy</h2>
-                <p class="font-serif text-4xl md:text-5xl leading-tight">
-                    Beyond aesthetics, we craft <span class="text-accent underline decoration-px underline-offset-8">meaningful</span> connections.
-                </p>
+    <footer id="contact" class="py-32 px-8 md:px-20 border-t border-zinc-200">
+        <div class="flex flex-col items-center text-center">
+            <div class="reveal mb-12">
+                <p class="text-[10px] tracking-[0.5em] uppercase opacity-40 mb-10">Connect for Projects</p>
+                <a href="mailto:hello@visualarchive.com" class="font-serif text-4xl md:text-7xl hover:italic hover:text-accent transition-all duration-500">hello@visualarchive.com</a>
             </div>
-            <div class="reveal md:mt-40 space-y-6 text-sm font-light leading-loose opacity-70">
-                <p>在設計的過程中，我追求的不是堆砌，而是「精準的留白」。每一份平面設計、每一個自媒體視覺，都是品牌與受眾之間的呼吸頻率。</p>
-                <p>身為品牌代理商的視覺守護者，我擅長將日常用品轉化為具備「質感」與「溫度」的影像語言。</p>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="py-20 px-8 md:px-20 border-t border-zinc-900">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
-            <div class="reveal">
-                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-4">Start a Conversation</p>
-                <a href="mailto:hello@visualarchive.com" class="font-serif text-3xl md:text-6xl hover:text-accent transition-all duration-500 underline decoration-zinc-800 hover:decoration-accent underline-offset-12">hello@visualarchive.com</a>
-            </div>
-            <div class="flex gap-8 text-[10px] tracking-[0.2em] uppercase font-light reveal">
+            
+            <div class="flex gap-12 text-[10px] tracking-[0.3em] uppercase font-light reveal">
                 <a href="#" class="hover:text-accent transition-colors">Instagram</a>
                 <a href="#" class="hover:text-accent transition-colors">Behance</a>
                 <a href="#" class="hover:text-accent transition-colors">LinkedIn</a>
             </div>
         </div>
-        <div class="mt-20 text-[8px] tracking-widest opacity-30 flex justify-between">
-            <span>©2026 VISUAL ARCHIVE STUDIO.</span>
-            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:opacity-100 transition-opacity uppercase">Back to Top ↑</button>
+        
+        <div class="mt-32 text-[9px] tracking-[0.4em] opacity-30 flex justify-between items-center w-full uppercase">
+            <span>©2026 Archive Studio</span>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:opacity-100 transition-opacity">Back to Top ↑</button>
         </div>
     </footer>
 
     <script>
-        // 1. 自定義游標
+        // 1. 自定義游標邏輯
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
+        // 游標與淺色背景的互動
         document.querySelectorAll('a, button, .project-card').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(4)';
-                cursor.style.background = 'rgba(128, 0, 32, 0.2)'; 
+                cursor.style.transform = 'scale(5)';
+                cursor.style.background = 'rgba(128, 0, 32, 0.1)'; // 變為勃根地紅淡影
+                cursor.style.border = '1px solid rgba(128, 0, 32, 0.4)';
             });
             el.addEventListener('mouseleave', () => {
                 cursor.style.transform = 'scale(1)';
-                cursor.style.background = 'rgba(255,255,255,0.8)';
+                cursor.style.background = '#1a1a1a';
+                cursor.style.border = 'none';
             });
         });
 
-        // 2. 導覽開關
+        // 2. 導覽選單開關
         const menuBtn = document.getElementById('menu-btn');
         const menuOverlay = document.getElementById('menu-overlay');
-        const menuLinks = document.querySelectorAll('.menu-link');
         const bars = [document.getElementById('bar1'), document.getElementById('bar2')];
 
-        function toggleMenu() {
+        menuBtn.addEventListener('click', () => {
             menuOverlay.classList.toggle('open');
             bars[0].classList.toggle('rotate-45');
             bars[0].classList.toggle('translate-y-1');
+            bars[0].classList.toggle('bg-[#f9f7f2]'); // 選單打開時變色
             bars[1].classList.toggle('-rotate-45');
             bars[1].classList.toggle('-translate-y-0.5');
-            document.body.classList.toggle('overflow-hidden'); // 避免打開選單時背景還能滾動
-        }
+            bars[1].classList.toggle('bg-[#f9f7f2]');
+        });
 
-        menuBtn.addEventListener('click', toggleMenu);
-        menuLinks.forEach(link => link.addEventListener('click', toggleMenu));
-
-        // 3. 滾動揭幕
+        // 3. 滾動揭幕觀察者
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.15 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
