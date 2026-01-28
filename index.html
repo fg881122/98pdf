@@ -31,6 +31,7 @@
             transition: transform 0.1s ease-out;
         }
 
+        /* 內容揭幕動畫 */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -41,6 +42,7 @@
             transform: translateY(0);
         }
 
+        /* 漢堡選單遮罩 */
         #menu-overlay {
             clip-path: circle(0% at 95% 5%);
             transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
@@ -62,9 +64,34 @@
         .project-card:hover .img-container img {
             transform: scale(1.08);
         }
+
+        /* --- 新增：網頁開場動畫樣式 --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background-color: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .loader-text-wrapper {
+            overflow: hidden;
+        }
+        #loader-text {
+            transform: translateY(100%);
+            transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body class="antialiased overflow-hidden"> <div id="loader">
+        <div class="loader-text-wrapper">
+            <h1 id="loader-text" class="font-serif text-5xl md:text-7xl italic tracking-tight text-zinc-900">
+                Portfolio <span class="not-italic opacity-30">—2026</span>
+            </h1>
+        </div>
+    </div>
 
     <div id="cursor"></div>
 
@@ -140,10 +167,6 @@
                         <p class="text-[11px] font-light leading-relaxed opacity-60 max-w-xs md:ml-auto">
                             為高端香氛品牌打造的視覺系統。結合極簡幾何與古典排版，傳遞時間流逝的靜謐感。
                         </p>
-                        <div class="mt-4 flex flex-wrap gap-3 md:justify-end">
-                            <span class="text-[8px] tracking-widest border border-zinc-200 px-2 py-1 uppercase opacity-50">Logo Design</span>
-                            <span class="text-[8px] tracking-widest border border-zinc-200 px-2 py-1 uppercase opacity-50">Packaging</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -158,22 +181,6 @@
                     <p class="text-[11px] font-light mt-4 opacity-50 leading-relaxed">探索空間與負空間的實驗性數位視覺作品。</p>
                 </div>
             </div>
-
-            <div class="md:col-span-10 md:col-start-2 reveal project-card group cursor-pointer">
-                <div class="overflow-hidden aspect-[21/9] editorial-border p-3 bg-white img-container">
-                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=1500" class="w-full h-full object-cover">
-                </div>
-                <div class="mt-10 flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">— 03 / Editorial</span>
-                        <h3 class="font-serif text-3xl text-zinc-900 italic">Noir Magazine Issue.04</h3>
-                    </div>
-                    <div class="mt-6 md:mt-0 text-right">
-                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-30">Concept & Art Direction / 2025</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -181,7 +188,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
             <div class="reveal">
                 <p class="text-[10px] tracking-[0.4em] uppercase opacity-30 mb-8 font-bold">New Business</p>
-                <a href="mailto:hello@visualarchive.com" class="font-serif text-4xl md:text-6xl hover:text-accent transition-all duration-500 block underline underline-offset-[16px] decoration-zinc-200 hover:decoration-accent">
+                <a href="mailto:hello@mastudio.com" class="font-serif text-4xl md:text-6xl hover:text-accent transition-all duration-500 block underline underline-offset-[16px] decoration-zinc-200 hover:decoration-accent">
                     hello@mastudio.com
                 </a>
             </div>
@@ -189,18 +196,37 @@
                 <div class="flex gap-12 text-[10px] tracking-[0.3em] uppercase font-bold">
                     <a href="#" class="hover:text-accent transition-colors">Behance</a>
                     <a href="#" class="hover:text-accent transition-colors">Instagram</a>
-                    <a href="#" class="hover:text-accent transition-colors">Awwwards</a>
                 </div>
                 <p class="text-[8px] tracking-[0.2em] opacity-30">BASED IN TAIPEI. AVAILABLE FOR GLOBAL PROJECTS.</p>
             </div>
         </div>
-        <div class="mt-32 pt-8 border-t border-zinc-100 flex justify-between items-center text-[9px] tracking-[0.3em] opacity-20 uppercase">
-            <span>©2026 M.A Studio Archive</span>
-            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:opacity-100 transition-opacity">Back to Top ↑</button>
-        </div>
     </footer>
 
     <script>
+        // --- 新增：網頁開場動畫邏輯 ---
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            const loaderText = document.getElementById('loader-text');
+
+            // 1. 開場文字滑入
+            setTimeout(() => {
+                loaderText.style.transform = 'translateY(0)';
+            }, 300);
+
+            // 2. 整個遮罩向上捲走
+            setTimeout(() => {
+                loader.style.transform = 'translateY(-100%)';
+            }, 2200);
+
+            // 3. 動畫結束後移除組件並恢復捲動
+            setTimeout(() => {
+                document.body.classList.remove('overflow-hidden');
+                loader.remove();
+                // 觸發首屏 Reveal 動畫
+                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            }, 3200);
+        });
+
         // 1. 自定義游標
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
@@ -237,14 +263,14 @@
         menuBtn.addEventListener('click', toggleMenu);
         menuLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-        // 3. 滾動揭幕
+        // 3. 滾動揭幕觀察者
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        // 注意：為了配合 Loader，我們在 JS 的 window.load 事件中再啟動觀察者
     </script>
 </body>
 </html>
