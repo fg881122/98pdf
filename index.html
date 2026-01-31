@@ -91,7 +91,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-8">
-                <div id="modal-img-container" class="grid grid-cols-1 gap-4 mb-12">
+                <div id="modal-img-container" class="grid grid-cols-1 gap-0 mb-12">
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-80 border-t border-zinc-100 pt-12">
                     <div>
@@ -190,9 +190,9 @@
             
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
                  onclick="openModal('Branding Identity', '老店翻新：早稻田日式涮涮鍋', '這是一間經營超過 20 年的在地老店。業主期望在保留傳統親和力的前提下，透過品牌視覺重塑，讓店面呈現出現代、專業且具備溫馨感的「新老店」形象。', '除了設計全新活潑的品牌標誌系統，更規劃了系列包裝視覺。包含質感紙袋與封口貼紙設計，將火鍋 Icon 與日式簡約線條結合，確保品牌在實體接觸點上的視覺一致性。', '100% 品牌形象提升', ['早稻田店面logo示意圖.png', '包裝紙袋＿應用情境圖1.jpg', '包裝紙袋＿應用情境圖2.jpg', '包裝紙袋＿應用情境圖3.jpg'])">
-                <div class="overflow-hidden aspect-[16/10] editorial-border p-3 bg-white relative">
-                    <div class="w-full h-full bg-zinc-100 overflow-hidden">
-                        <img src="早稻田店面logo示意圖.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105">
+                <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 relative">
+                    <div class="w-full h-full overflow-hidden">
+                        <img src="早稻田店面logo示意圖.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="早稻田火鍋封面">
                     </div>
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
@@ -206,7 +206,7 @@
 
             <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" 
                  onclick="openModal('Social Strategy', '電台數位內容：AI 圖文實踐', '漢聲廣播電台閱聽眾偏高，擔任社群小編期間，需將廣播音頻轉化為視覺專欄，吸引年輕族群關注。', '導入 AI 工作流，將節目音頻轉逐字稿並製作成具吸引力的專欄圖文，降低人力成本並提升內容產量。', 'AI 驅動 工作流優化', [])">
-                <div class="overflow-hidden aspect-[3/4] editorial-border p-3 bg-white flex items-center justify-center text-center bg-zinc-100">
+                <div class="overflow-hidden aspect-[3/4] editorial-border bg-white flex items-center justify-center text-center bg-zinc-100">
                      <p class="text-xs opacity-20 italic px-4">Selected Social Media Works</p>
                 </div>
                 <div class="mt-8">
@@ -217,7 +217,7 @@
 
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
                  onclick="openModal('Illustration & Layout', '蘆竹社區計畫：城市共融舞台', '跨年度的大型社區計畫，需整合在地特色並透過視覺傳達「多元共融」的城市舞台理念。', '負責地圖插畫、手冊刊物排版以及活動主視覺設計，確保視覺風格符合文化部社區營造計畫規範。', '政府專案 完整視覺執行', [])">
-                <div class="overflow-hidden aspect-[16/10] editorial-border p-3 bg-white flex items-center justify-center bg-zinc-100">
+                <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 flex items-center justify-center bg-zinc-100">
                     <p class="text-xs opacity-20 italic">Community Project Layout</p>
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
@@ -231,6 +231,7 @@
 
         </div>
     </section>
+
     <section class="py-40 px-8 md:px-20 border-t border-zinc-200 bg-zinc-900 text-white">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-4 reveal">
@@ -291,19 +292,22 @@
             }, 3200);
         });
 
-        // Helper: 創建雜誌感圖片元素
+        // Helper: 創建標準化雜誌感圖片元素
         function createEditorialImg(src, customClass = "") {
             const img = document.createElement('img');
             img.src = src;
-            img.className = `w-full max-h-[70vh] object-contain h-auto bg-white shadow-sm transition-opacity duration-700 ${customClass}`;
+            // 優化點：加入 mix-blend-multiply 與強制 object-contain，限制 75vh 以適配高解析螢幕
+            img.className = `w-full max-h-[75vh] object-contain h-auto mix-blend-multiply transition-opacity duration-700 ${customClass}`;
             img.setAttribute('loading', 'lazy');
             return img;
         }
 
-        // Helper: 創建展示框架
+        // Helper: 創建同步背景的展示框架
         function createFrame(content, extraClass = "") {
             const frame = document.createElement('div');
-            frame.className = `bg-zinc-50 p-6 md:p-12 editorial-border mb-12 md:mb-16 last:mb-0 overflow-hidden ${extraClass}`;
+            // 優化點：背景設為 --bg-color，移除 Padding 實現無縫銜接
+            frame.style.backgroundColor = 'var(--bg-color)';
+            frame.className = `p-0 editorial-border mb-12 md:mb-16 last:mb-0 overflow-hidden ${extraClass}`;
             if (typeof content === 'string') {
                 frame.innerHTML = content;
             } else {
@@ -326,12 +330,12 @@
                 let i = 0;
                 while (i < imgs.length) {
                     if (i === 0) {
-                        // 1. Hero 第一張全寬展示
+                        // 1. Hero 第一張滿幅展示
                         const heroImg = createEditorialImg(imgs[i]);
                         imgContainer.appendChild(createFrame(heroImg));
                         i++;
                     } else if (i === 1 && imgs.length >= 3) {
-                        // 2. Duo Grid 第 2 & 3 張並排 (如果總數足夠)
+                        // 2. Duo Grid 第 2 & 3 張並排，同步移除 Padding
                         const gridDiv = document.createElement('div');
                         gridDiv.className = 'grid grid-cols-2 gap-4 md:gap-8';
                         gridDiv.appendChild(createEditorialImg(imgs[i]));
@@ -339,7 +343,7 @@
                         imgContainer.appendChild(createFrame(gridDiv));
                         i += 2;
                     } else {
-                        // 3. Single Remaining 剩餘單張居中縮小，增加留白感
+                        // 3. 剩餘單張居中展示
                         const singleImg = createEditorialImg(imgs[i], 'w-4/5 mx-auto');
                         imgContainer.appendChild(createFrame(singleImg));
                         i++;
@@ -388,5 +392,5 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
     </script>
-    </body>
+</body>
 </html>
