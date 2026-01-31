@@ -189,7 +189,7 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-y-48 md:gap-x-16 items-start">
             
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Branding Identity', '老店翻新：早稻田日式涮涮鍋', '這是一間經營超過 20 年的在地老店。業主期望在保留傳統親和力的前提下，透過品牌視覺重塑，讓店面呈現出現代、專業且具備溫馨感的「新老店」形象。', '除了設計全新活潑的品牌標誌系統，更規劃了系列包裝視覺。包含質感紙袋與封口貼紙設計，將火鍋 Icon 與日式簡約線條結合，確保品牌在實體接觸點上的視覺一致性。', '100% 品牌形象提升', ['包裝紙袋＿應用情境圖1.jpg', '包裝紙袋＿應用情境圖2.jpg', '包裝紙袋＿應用情境圖3.jpg'])">
+                 onclick="openModal('Branding Identity', '老店翻新：早稻田日式涮涮鍋', '這是一間經營超過 20 年的在地老店。業主期望在保留傳統親和力的前提下，透過品牌視覺重塑，讓店面呈現出現代、專業且具備溫馨感的「新老店」形象。', '除了設計全新活潑的品牌標誌系統，更規劃了系列包裝視覺。包含質感紙袋與封口貼紙設計，將火鍋 Icon 與日式簡約線條結合，確保品牌在實體接觸點上的視覺一致性。', '100% 品牌形象提升', ['早稻田店面logo示意圖.png', '包裝紙袋＿應用情境圖1.jpg', '包裝紙袋＿應用情境圖2.jpg', '包裝紙袋＿應用情境圖3.jpg'])">
                 <div class="overflow-hidden aspect-[16/10] editorial-border p-3 bg-white relative">
                     <div class="w-full h-full bg-zinc-100 overflow-hidden">
                         <img src="早稻田店面logo示意圖.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105">
@@ -291,25 +291,30 @@
             }, 3200);
         });
 
-        // Optimized Modal Control
+        // Gallery-focused Modal Control
         function openModal(cat, title, bg, sol, impact, imgs) {
             document.getElementById('modal-category').innerText = cat;
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-bg').innerText = bg;
             document.getElementById('modal-sol').innerText = sol;
             
-            // Render Images in Modal - Optimized for scrollable experience and visual consistency
             const imgContainer = document.getElementById('modal-img-container');
             imgContainer.innerHTML = ''; // Clear existing
             
             if (imgs && imgs.length > 0) {
                 imgs.forEach(src => {
+                    // 建立長幅雜誌感藝廊的「展示框」
+                    const frame = document.createElement('div');
+                    frame.className = 'editorial-border p-4 bg-white shadow-sm mb-20 last:mb-12';
+                    
                     const img = document.createElement('img');
                     img.src = src;
-                    // 加入動態優化類別：限制高度、寬度自適應、保持比例、懶加載
-                    img.className = 'w-full mb-12 editorial-border max-h-[75vh] object-contain h-auto bg-white';
+                    // 設定高度限制與比例優化，確保藝廊整體視覺流暢
+                    img.className = 'w-full max-h-[85vh] object-contain h-auto';
                     img.setAttribute('loading', 'lazy');
-                    imgContainer.appendChild(img);
+                    
+                    frame.appendChild(img);
+                    imgContainer.appendChild(frame);
                 });
                 imgContainer.style.display = 'block'; 
             } else {
