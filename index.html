@@ -205,16 +205,15 @@
             </div>
 
             <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Social Strategy', '電台數位內容：AI 圖文實踐', '漢聲廣播電台閱聽眾偏高，擔任社群小編期間，需將廣播音頻轉化為視覺專欄，吸引年輕族群關注。', '導入 AI 工作流，將節目音頻轉逐字稿並製作成具吸引力的專欄圖文，降低人力成本並提升內容產量。', 'AI 驅動 工作流優化', [])">
-                <div class="overflow-hidden aspect-[3/4] editorial-border bg-white flex items-center justify-center text-center bg-zinc-100">
-                     <p class="text-xs opacity-20 italic px-4">Selected Social Media Works</p>
+                 onclick="openModal('Social Strategy', '漢聲電台：數位轉型規劃', '由於電台閱聽眾年齡層偏高，在擔任社群小編期間，致力於將傳統廣播內容進行數位化轉譯，目的是透過視覺媒體吸引更多年輕族群關注。', '導入 AI 工具建立高效工作流，將廣播節目音頻自動轉錄為逐字稿，並從年輕人視角出發，將內容重新策劃成雜誌風格的社群專欄圖文。', 'AI 驅動 工作流優化', ['漢聲電台社群專欄_1.jpg', '漢聲電台社群專欄_2.jpg', '漢聲電台社群專欄_3.jpg', '漢聲電台社群專欄_4.jpg'])">
+                <div class="overflow-hidden aspect-[3/4] editorial-border bg-zinc-100 relative">
+                    <img src="漢聲電台專題封面.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="漢聲電台專題封面">
                 </div>
                 <div class="mt-8">
                     <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Social Strategy</span>
                     <h3 class="font-serif text-2xl">漢聲電台：數位轉型規劃</h3>
                 </div>
             </div>
-
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
                  onclick="openModal('Illustration & Layout', '蘆竹社區計畫：城市共融舞台', '跨年度的大型社區計畫，需整合在地特色並透過視覺傳達「多元共融」的城市舞台理念。', '負責地圖插畫、手冊刊物排版以及活動主視覺設計，確保視覺風格符合文化部社區營造計畫規範。', '政府專案 完整視覺執行', [])">
                 <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 flex items-center justify-center bg-zinc-100">
@@ -296,7 +295,6 @@
         function createEditorialImg(src, customClass = "") {
             const img = document.createElement('img');
             img.src = src;
-            // 優化點：加入 mix-blend-multiply 與強制 object-contain，限制 75vh 以適配高解析螢幕
             img.className = `w-full max-h-[75vh] object-contain h-auto mix-blend-multiply transition-opacity duration-700 ${customClass}`;
             img.setAttribute('loading', 'lazy');
             return img;
@@ -305,7 +303,6 @@
         // Helper: 創建同步背景的展示框架
         function createFrame(content, extraClass = "") {
             const frame = document.createElement('div');
-            // 優化點：背景設為 --bg-color，移除 Padding 實現無縫銜接
             frame.style.backgroundColor = 'var(--bg-color)';
             frame.className = `p-0 editorial-border mb-12 md:mb-16 last:mb-0 overflow-hidden ${extraClass}`;
             if (typeof content === 'string') {
@@ -330,12 +327,10 @@
                 let i = 0;
                 while (i < imgs.length) {
                     if (i === 0) {
-                        // 1. Hero 第一張滿幅展示
                         const heroImg = createEditorialImg(imgs[i]);
                         imgContainer.appendChild(createFrame(heroImg));
                         i++;
                     } else if (i === 1 && imgs.length >= 3) {
-                        // 2. Duo Grid 第 2 & 3 張並排，同步移除 Padding
                         const gridDiv = document.createElement('div');
                         gridDiv.className = 'grid grid-cols-2 gap-4 md:gap-8';
                         gridDiv.appendChild(createEditorialImg(imgs[i]));
@@ -343,7 +338,6 @@
                         imgContainer.appendChild(createFrame(gridDiv));
                         i += 2;
                     } else {
-                        // 3. 剩餘單張居中展示
                         const singleImg = createEditorialImg(imgs[i], 'w-4/5 mx-auto');
                         imgContainer.appendChild(createFrame(singleImg));
                         i++;
@@ -371,13 +365,11 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Custom Cursor
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
         });
 
-        // Navigation Menu
         const menuBtn = document.getElementById('menu-btn');
         const menuOverlay = document.getElementById('menu-overlay');
         function toggleMenu() {
@@ -387,7 +379,6 @@
         menuBtn.addEventListener('click', toggleMenu);
         document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', toggleMenu));
 
-        // Intersection Observer for Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
