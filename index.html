@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Archive | Visual Designer & Marketing Planner</title>
+    <title>Chrile Li | Visual Designer & Marketing Planner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
@@ -40,7 +40,6 @@
             opacity: 1; transform: translateY(0);
         }
 
-        /* 假分頁 Modal 樣式 */
         #project-modal {
             position: fixed; inset: 0;
             background-color: var(--bg-color);
@@ -77,38 +76,39 @@
     <div id="loader">
         <div class="loader-text-wrapper">
             <h1 id="loader-text" class="font-serif text-5xl md:text-7xl italic tracking-tight">
-                Portfolio <span class="not-italic opacity-30">—2026</span>
+                Chrile Li <span class="not-italic opacity-30">—2026</span>
             </h1>
         </div>
     </div>
 
     <div id="project-modal" class="p-8 md:p-20">
         <div class="flex justify-between items-start mb-20">
-            <h2 id="modal-title" class="text-5xl md:text-7xl font-serif italic text-accent">Project Title</h2>
+            <div>
+                <p id="modal-category" class="text-[10px] tracking-[0.4em] uppercase text-accent font-bold mb-4">Category</p>
+                <h2 id="modal-title" class="text-5xl md:text-7xl font-serif italic">Project Title</h2>
+            </div>
             <button onclick="closeModal()" class="text-[10px] tracking-[0.4em] uppercase hover:text-accent transition-colors">Close ✕</button>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-8">
-                <div id="modal-img" class="aspect-video bg-zinc-100 editorial-border mb-12"></div>
+                <div id="modal-img-container" class="aspect-video bg-zinc-100 editorial-border mb-12 flex items-center justify-center overflow-hidden">
+                    <p class="text-xs opacity-20 italic text-center px-10">（建議放置該專案的高解析度情境圖或組圖）</p>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-80">
                     <div>
-                        <p class="font-bold mb-4 uppercase tracking-widest text-accent">專案背景 / Background</p>
-                        <p id="modal-bg">這裡填寫專案目的，例如：提升品牌在萬聖節期間的曝光率。</p>
+                        <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">專案背景 / Background</p>
+                        <p id="modal-bg">內容填充中...</p>
                     </div>
                     <div>
-                        <p class="font-bold mb-4 uppercase tracking-widest text-accent">擔任角色 / Role</p>
-                        <p id="modal-role">企劃＋設計＋執行，包含 HTML/CSS 網頁撰寫。</p>
+                        <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">設計方案 / Solution</p>
+                        <p id="modal-sol">內容填充中...</p>
                     </div>
                 </div>
             </div>
             <div class="md:col-span-4 border-l border-zinc-200 pl-8">
-                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8">商業成效 / Impact</p>
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8">專案亮點 / Impact</p>
                 <div id="modal-impact" class="space-y-12">
-                    <div>
-                        <h4 class="text-5xl font-serif italic mb-2">+25%</h4>
-                        <p class="text-[10px] uppercase tracking-widest opacity-60">活動報名人數提升</p>
                     </div>
-                </div>
             </div>
         </div>
     </div>
@@ -124,7 +124,7 @@
     </div>
 
     <nav class="fixed top-0 w-full z-[70] flex justify-between items-center px-8 py-8 mix-blend-difference">
-        <div class="text-xl font-serif tracking-widest uppercase text-white">M.A Studio</div>
+        <div class="text-xl font-serif tracking-widest uppercase text-white">Chrile Studio</div>
         <button id="menu-btn" class="space-y-1.5 group focus:outline-none p-4">
             <div id="bar1" class="w-8 h-px bg-white transition-all"></div>
             <div id="bar2" class="w-8 h-px bg-white transition-all"></div>
@@ -142,9 +142,12 @@
                     Visual Strategy <br>
                     <span class="italic text-accent">Marketing Focused</span>
                 </h1>
+                <p class="mt-8 max-w-lg text-sm opacity-60 leading-relaxed">
+                    我是李淳甫 Chrile，專注於品牌轉譯與視覺優化。透過數據洞察與行銷邏輯，讓視覺不只是美觀，更是達成品牌增長的解決方案。
+                </p>
                 <div class="mt-16 flex flex-wrap gap-8">
                     <a href="#work" class="px-8 py-4 border border-zinc-900 text-[10px] uppercase tracking-widest hover:bg-zinc-900 hover:text-white transition-all">View Archive</a>
-                    <a href="#contact" class="px-8 py-4 bg-accent text-white text-[10px] uppercase tracking-widest hover:opacity-80 transition-all">Contact Me</a>
+                    <a href="#contact" class="px-8 py-4 bg-accent text-white text-[10px] uppercase tracking-widest hover:opacity-80 transition-all">Hire Me</a>
                 </div>
             </div>
         </div>
@@ -154,11 +157,30 @@
         <div class="max-w-4xl reveal">
             <h2 class="text-xs tracking-[0.5em] uppercase text-accent mb-12">01 / About Me</h2>
             <p class="font-serif text-3xl md:text-5xl leading-tight mb-12">
-                我不只是一位設計師，更是一位 <span class="italic">問題解決者</span>。
+                我不只是一位設計師，更是一位 <span class="italic text-accent">問題解決者</span>。
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-70 font-light">
-                <p>憑藉在品牌代理商的跨職能經驗，我擅長將複雜的商業需求轉化為精準的視覺語言。透過數據觀察與行銷邏輯，我所製作的視覺不只是美觀，更致力於達成品牌 KPI。</p>
-                <p>目前積極進修英語與海外職場趨勢，致力於提供具備國際視野與在地行銷力結合的視覺服務。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-70 font-light mb-20">
+                <p>畢業於朝陽科技大學工業設計系，具備跨足平面設計、數位行銷與品牌規劃的綜合背景。我擅長將複雜的商業需求轉化為具感染力的視覺語言。</p>
+                <p>曾服務於漢聲廣播電台、GU 與 2nd STREET，並負責過文化部社區營造等多項大型專案，目前正積極整合 AI 工作流，為客戶創造更具效率且前瞻的設計服務。</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-zinc-200 pt-12">
+                <div>
+                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Service 01</p>
+                    <p class="font-serif italic text-lg">品牌識別規劃</p>
+                </div>
+                <div>
+                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Service 02</p>
+                    <p class="font-serif italic text-lg">社群內容行銷</p>
+                </div>
+                <div>
+                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Service 03</p>
+                    <p class="font-serif italic text-lg">商業攝影美編</p>
+                </div>
+                <div>
+                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Service 04</p>
+                    <p class="font-serif italic text-lg">數位媒體製作</p>
+                </div>
             </div>
         </div>
     </section>
@@ -167,30 +189,47 @@
         <h2 class="text-xs tracking-[0.5em] uppercase text-accent mb-20 reveal">02 / Selected Works</h2>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-y-48 md:gap-x-16 items-start">
             
-            <div class="md:col-span-8 reveal project-card group cursor-pointer" onclick="openModal('Social Campaign', '透過視覺優化提升轉單率', '企劃 + 執行', '+15% Conversion')">
+            <div class="md:col-span-8 reveal project-card group cursor-pointer" 
+                 onclick="openModal('Branding', '早稻田日式涮涮鍋', '20年老店品牌重塑。老闆希望在保留老店親和力的同時，提升整體專業形象感與年輕化。', '設計全新活潑的標誌系統、招牌視覺，並優化外帶包裝設計。', '100% 品牌翻新滿意度')">
                 <div class="overflow-hidden aspect-[16/10] editorial-border p-3 bg-white relative">
-                    <div class="w-full h-full bg-zinc-100 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105">
+                    <div class="w-full h-full bg-zinc-100 overflow-hidden flex items-center justify-center">
+                        <p class="text-xs opacity-20 italic">（請放入早稻田包裝或 Logo 設計圖）</p>
                     </div>
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
                     <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Social Media</span>
-                        <h3 class="font-serif text-3xl">社群行銷素材組</h3>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Branding Identity</span>
+                        <h3 class="font-serif text-3xl">老店翻新：早稻田火鍋店</h3>
                     </div>
-                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose">View Case Study ↑</p>
+                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2025</p>
                 </div>
             </div>
 
-            <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" onclick="openModal('Commercial Photography', '產品攝影與修圖', '攝影 + 去背修圖', '100% 品牌風格一致性')">
-                <div class="overflow-hidden aspect-[3/4] editorial-border p-3 bg-white">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0">
+            <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" 
+                 onclick="openModal('Social Media', '漢聲廣播電台：數位轉型', '電台閱聽眾偏高，擔任社群小編期間，需將廣播音頻轉化為視覺專欄，吸引年輕族群關注。', '導入 AI 工作流，將節目音頻轉逐字稿並製作成具吸引力的專欄圖文。', 'AI 驅動 工作流優化')">
+                <div class="overflow-hidden aspect-[3/4] editorial-border p-3 bg-white flex items-center justify-center text-center">
+                     <p class="text-xs opacity-20 italic px-4">（請放入節目封面或社群圖文組圖）</p>
                 </div>
                 <div class="mt-8">
-                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Photography</span>
-                    <h3 class="font-serif text-2xl">商品去背與情境攝影</h3>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Social Strategy</span>
+                    <h3 class="font-serif text-2xl">電台數位內容：AI 圖文實踐</h3>
                 </div>
             </div>
+
+            <div class="md:col-span-8 reveal project-card group cursor-pointer" 
+                 onclick="openModal('Editorial', '文化部社區營造計畫', '跨年度的大型社區計畫，需整合在地特色並透過視覺傳達「多元共融」的城市舞台理念。', '負責地圖插畫、手冊刊物排版以及活動主視覺設計。', '政府專案 完整視覺執行')">
+                <div class="overflow-hidden aspect-[16/10] editorial-border p-3 bg-white flex items-center justify-center">
+                    <p class="text-xs opacity-20 italic">（請放入蘆竹計畫刊物或地圖作品圖）</p>
+                </div>
+                <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
+                    <div>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Illustration & Layout</span>
+                        <h3 class="font-serif text-3xl">蘆竹社區計畫：城市共融舞台</h3>
+                    </div>
+                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2024</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -201,19 +240,19 @@
             </div>
             <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-20 reveal">
                 <div>
-                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-accent underline-offset-8">Design & Code</h4>
+                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-accent underline-offset-8">Creative Tech</h4>
                     <ul class="text-[11px] tracking-[0.2em] uppercase space-y-4 opacity-70">
-                        <li>Ps / Ai / Id / Figma</li>
-                        <li>HTML / CSS / JavaScript</li>
-                        <li>AI Workflow (Image & Copy Gen)</li>
+                        <li>Ai / Ps / Id / LrC / Figma</li>
+                        <li>HTML / CSS / Javascript / GAS</li>
+                        <li>AI Workflow / Generative Media</li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-accent underline-offset-8">Marketing</h4>
+                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-accent underline-offset-8">Marketing Role</h4>
                     <ul class="text-[11px] tracking-[0.2em] uppercase space-y-4 opacity-70">
-                        <li>Social Content Strategy</li>
-                        <li>Event Planning</li>
-                        <li>Branding Identity</li>
+                        <li>Brand Identity Strategy</li>
+                        <li>Social Media Planning</li>
+                        <li>Event Visual Management</li>
                     </ul>
                 </div>
             </div>
@@ -223,23 +262,25 @@
     <footer id="contact" class="py-32 px-8 md:px-20 border-t border-zinc-200">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
             <div class="reveal">
-                <p class="text-[10px] tracking-[0.4em] uppercase opacity-30 mb-8 font-bold">Start a Conversation</p>
-                <a href="mailto:hello@visualarchive.com" class="font-serif text-4xl md:text-6xl hover:text-accent transition-all duration-500 block underline underline-offset-[16px] decoration-zinc-200 hover:decoration-accent">
-                    hello@visualarchive.com
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-30 mb-8 font-bold">Collaborate with me</p>
+                <a href="mailto:your-email@example.com" class="font-serif text-4xl md:text-6xl hover:text-accent transition-all duration-500 block underline underline-offset-[16px] decoration-zinc-200 hover:decoration-accent">
+                    Say Hello.
                 </a>
             </div>
             <div class="flex flex-col md:items-end gap-10 reveal text-zinc-900">
                 <div class="flex gap-12 text-[10px] tracking-[0.3em] uppercase font-bold">
-                    <a href="#" class="hover:opacity-50 transition-opacity">LinkedIn</a>
+                    <a href="#" class="hover:opacity-50 transition-opacity">Instagram</a>
                     <a href="#" class="hover:opacity-50 transition-opacity">Behance</a>
                 </div>
-                <p class="text-[8px] tracking-[0.2em] opacity-30">BASED IN TAIPEI. 2026 ARCHIVE.</p>
+                <p class="text-[8px] tracking-[0.2em] opacity-30 text-right uppercase">
+                    Designed for 2026 Archive. <br> Based in Taipei / Taoyuan.
+                </p>
             </div>
         </div>
     </footer>
 
     <script>
-        // 開場動畫
+        // Opening Animation
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             const loaderText = document.getElementById('loader-text');
@@ -252,12 +293,21 @@
             }, 3200);
         });
 
-        // 假分頁 Modal 控制
-        function openModal(title, bg, role, impact) {
+        // Modal Control
+        function openModal(cat, title, bg, sol, impact) {
+            document.getElementById('modal-category').innerText = cat;
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-bg').innerText = bg;
-            document.getElementById('modal-role').innerText = role;
-            document.getElementById('modal-impact').innerHTML = `<div><h4 class="text-5xl font-serif italic mb-2">${impact.split(' ')[0]}</h4><p class="text-[10px] uppercase tracking-widest opacity-60">${impact.split(' ').slice(1).join(' ')}</p></div>`;
+            document.getElementById('modal-sol').innerText = sol;
+            
+            const impactData = impact.split(' ');
+            document.getElementById('modal-impact').innerHTML = `
+                <div>
+                    <h4 class="text-5xl font-serif italic mb-2">${impactData[0]}</h4>
+                    <p class="text-[10px] uppercase tracking-widest opacity-60">${impactData.slice(1).join(' ')}</p>
+                </div>
+            `;
+            
             document.getElementById('project-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
@@ -267,13 +317,13 @@
             document.body.style.overflow = 'auto';
         }
 
-        // 游標
+        // Custom Cursor
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
         });
 
-        // 導覽
+        // Navigation Menu
         const menuBtn = document.getElementById('menu-btn');
         const menuOverlay = document.getElementById('menu-overlay');
         function toggleMenu() {
@@ -283,7 +333,7 @@
         menuBtn.addEventListener('click', toggleMenu);
         document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', toggleMenu));
 
-        // 觀察者
+        // Intersection Observer for Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
