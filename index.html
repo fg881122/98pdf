@@ -189,7 +189,7 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-y-48 md:gap-x-16 items-start">
             
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Branding Identity', '老店翻新：早稻田日式涮涮鍋', '這是一間經營超過 20 年的在地老店。業主期望在保留傳統親和力的前提下，透過品牌視覺重塑，讓店面呈現出現代、專業且具備溫馨感的「新老店」形象。', '除了設計全新活潑的品牌標誌系統，更規劃了系列包裝視覺。包含質感紙袋與封口貼紙設計，將火鍋 Icon 與日式簡約線條結合，確保品牌在實體接觸點上的視覺一致性。', '100% 品牌形象提升', ['早稻田包裝1.jpg', '早稻田包裝2.jpg'])">
+                 onclick="openModal('Branding Identity', '老店翻新：早稻田日式涮涮鍋', '這是一間經營超過 20 年的在地老店。業主期望在保留傳統親和力的前提下，透過品牌視覺重塑，讓店面呈現出現代、專業且具備溫馨感的「新老店」形象。', '除了設計全新活潑的品牌標誌系統，更規劃了系列包裝視覺。包含質感紙袋與封口貼紙設計，將火鍋 Icon 與日式簡約線條結合，確保品牌在實體接觸點上的視覺一致性。', '100% 品牌形象提升', ['早稻田店面logo示意圖.jpg', '早稻田包裝1.jpg', '早稻田包裝2.jpg'])">
                 <div class="overflow-hidden aspect-[16/10] editorial-border p-3 bg-white relative">
                     <div class="w-full h-full bg-zinc-100 overflow-hidden">
                         <img src="早稻田店面logo示意圖.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105">
@@ -203,6 +203,7 @@
                     <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2025</p>
                 </div>
             </div>
+
             <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" 
                  onclick="openModal('Social Strategy', '電台數位內容：AI 圖文實踐', '漢聲廣播電台閱聽眾偏高，擔任社群小編期間，需將廣播音頻轉化為視覺專欄，吸引年輕族群關注。', '導入 AI 工作流，將節目音頻轉逐字稿並製作成具吸引力的專欄圖文，降低人力成本並提升內容產量。', 'AI 驅動 工作流優化', [])">
                 <div class="overflow-hidden aspect-[3/4] editorial-border p-3 bg-white flex items-center justify-center text-center bg-zinc-100">
@@ -230,7 +231,6 @@
 
         </div>
     </section>
-
     <section class="py-40 px-8 md:px-20 border-t border-zinc-200 bg-zinc-900 text-white">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-4 reveal">
@@ -291,27 +291,26 @@
             }, 3200);
         });
 
-        // Modal Control
+        // Optimized Modal Control
         function openModal(cat, title, bg, sol, impact, imgs) {
             document.getElementById('modal-category').innerText = cat;
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-bg').innerText = bg;
             document.getElementById('modal-sol').innerText = sol;
             
-            // Render Images in Modal
+            // Render Images in Modal - Optimized for multiple images stacking
             const imgContainer = document.getElementById('modal-img-container');
             imgContainer.innerHTML = ''; // Clear existing
+            
             if (imgs && imgs.length > 0) {
                 imgs.forEach(src => {
-                    const imgDiv = document.createElement('div');
-                    imgDiv.className = 'editorial-border p-2 bg-white';
+                    // Create img element directly to allow vertical stack and smooth scroll
                     const img = document.createElement('img');
                     img.src = src;
-                    img.className = 'w-full h-auto object-cover';
-                    imgDiv.appendChild(img);
-                    imgContainer.appendChild(imgDiv);
+                    img.className = 'w-full mb-4 editorial-border h-auto object-cover';
+                    imgContainer.appendChild(img);
                 });
-                imgContainer.style.display = 'grid';
+                imgContainer.style.display = 'block'; // Ensure it displays as a block for stacking
             } else {
                 imgContainer.style.display = 'none';
             }
@@ -354,5 +353,5 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
     </script>
-</body>
+    </body>
 </html>
