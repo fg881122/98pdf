@@ -91,9 +91,9 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-8">
-                <div id="modal-img-container" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+                <div id="modal-img-container" class="grid grid-cols-1 gap-4 mb-12">
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-80">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-80 border-t border-zinc-100 pt-12">
                     <div>
                         <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">專案背景 / Background</p>
                         <p id="modal-bg">內容填充中...</p>
@@ -298,19 +298,20 @@
             document.getElementById('modal-bg').innerText = bg;
             document.getElementById('modal-sol').innerText = sol;
             
-            // Render Images in Modal - Optimized for multiple images stacking
+            // Render Images in Modal - Optimized for scrollable experience and visual consistency
             const imgContainer = document.getElementById('modal-img-container');
             imgContainer.innerHTML = ''; // Clear existing
             
             if (imgs && imgs.length > 0) {
                 imgs.forEach(src => {
-                    // Create img element directly to allow vertical stack and smooth scroll
                     const img = document.createElement('img');
                     img.src = src;
-                    img.className = 'w-full mb-4 editorial-border h-auto object-cover';
+                    // 加入動態優化類別：限制高度、寬度自適應、保持比例、懶加載
+                    img.className = 'w-full mb-12 editorial-border max-h-[75vh] object-contain h-auto bg-white';
+                    img.setAttribute('loading', 'lazy');
                     imgContainer.appendChild(img);
                 });
-                imgContainer.style.display = 'block'; // Ensure it displays as a block for stacking
+                imgContainer.style.display = 'block'; 
             } else {
                 imgContainer.style.display = 'none';
             }
