@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chrile Li | Visual Designer & Marketing Planner</title>
+    <title>Visual Archive | Visual Designer & Marketing Planner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
@@ -40,6 +40,7 @@
             opacity: 1; transform: translateY(0);
         }
 
+        /* 假分頁 Modal 樣式 */
         #project-modal {
             position: fixed; inset: 0;
             background-color: var(--bg-color);
@@ -76,38 +77,38 @@
     <div id="loader">
         <div class="loader-text-wrapper">
             <h1 id="loader-text" class="font-serif text-5xl md:text-7xl italic tracking-tight">
-                Chrile Li <span class="not-italic opacity-30">—2026</span>
+                Portfolio <span class="not-italic opacity-30">—2026</span>
             </h1>
         </div>
     </div>
 
     <div id="project-modal" class="p-8 md:p-20">
         <div class="flex justify-between items-start mb-20">
-            <div>
-                <p id="modal-category" class="text-[10px] tracking-[0.4em] uppercase text-accent font-bold mb-4">Category</p>
-                <h2 id="modal-title" class="text-5xl md:text-7xl font-serif italic">Project Title</h2>
-            </div>
+            <h2 id="modal-title" class="text-5xl md:text-7xl font-serif italic text-accent">Project Title</h2>
             <button onclick="closeModal()" class="text-[10px] tracking-[0.4em] uppercase hover:text-accent transition-colors">Close ✕</button>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-8">
-                <div id="modal-img-container" class="space-y-8 mb-12">
-                    </div>
+                <div id="modal-img" class="aspect-video bg-zinc-100 overflow-hidden editorial-border mb-12"></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-80">
                     <div>
-                        <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">專案背景 / Background</p>
-                        <p id="modal-bg">內容填充中...</p>
+                        <p class="font-bold mb-4 uppercase tracking-widest text-accent">專案背景 / Background</p>
+                        <p id="modal-bg">這裡填寫專案目的。</p>
                     </div>
                     <div>
-                        <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">設計方案 / Solution</p>
-                        <p id="modal-sol">內容填充中...</p>
+                        <p class="font-bold mb-4 uppercase tracking-widest text-accent">解決方案與角色 / Solution</p>
+                        <p id="modal-role">企劃＋設計＋執行。</p>
                     </div>
                 </div>
             </div>
             <div class="md:col-span-4 border-l border-zinc-200 pl-8">
-                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8">專案亮點 / Impact</p>
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8">商業成效 / Impact</p>
                 <div id="modal-impact" class="space-y-12">
+                    <div>
+                        <h4 class="text-5xl font-serif italic mb-2">+25%</h4>
+                        <p class="text-[10px] uppercase tracking-widest opacity-60">活動報名人數提升</p>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -123,7 +124,7 @@
     </div>
 
     <nav class="fixed top-0 w-full z-[70] flex justify-between items-center px-8 py-8 mix-blend-difference">
-        <div class="text-xl font-serif tracking-widest uppercase text-white">Chrile Studio</div>
+        <div class="text-xl font-serif tracking-widest uppercase text-white">M.A Studio</div>
         <button id="menu-btn" class="space-y-1.5 group focus:outline-none p-4">
             <div id="bar1" class="w-8 h-px bg-white transition-all"></div>
             <div id="bar2" class="w-8 h-px bg-white transition-all"></div>
@@ -141,13 +142,23 @@
                     Visual Strategy <br>
                     <span class="italic text-accent">Marketing Focused</span>
                 </h1>
-                <p class="mt-8 max-w-lg text-sm opacity-60 leading-relaxed">
-                    我是李淳甫 Chrile，專注於品牌轉譯與視覺優化。透過數據洞察與行銷邏輯，讓視覺不只是美觀，更是達成品牌增長的解決方案。
-                </p>
                 <div class="mt-16 flex flex-wrap gap-8">
                     <a href="#work" class="px-8 py-4 border border-zinc-900 text-[10px] uppercase tracking-widest hover:bg-zinc-900 hover:text-white transition-all">View Archive</a>
-                    <a href="#contact" class="px-8 py-4 bg-accent text-white text-[10px] uppercase tracking-widest hover:opacity-80 transition-all">Hire Me</a>
+                    <a href="#contact" class="px-8 py-4 bg-accent text-white text-[10px] uppercase tracking-widest hover:opacity-80 transition-all">Contact Me</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-40 px-8 md:px-20 bg-white/40">
+        <div class="max-w-4xl reveal">
+            <h2 class="text-xs tracking-[0.5em] uppercase text-accent mb-12">01 / About Me</h2>
+            <p class="font-serif text-3xl md:text-5xl leading-tight mb-12">
+                我不只是一位設計師，更是一位 <span class="italic">問題解決者</span>。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-70 font-light">
+                <p>憑藉在品牌代理商的跨職能經驗，我擅長將複雜的商業需求轉化為精準的視覺語言。透過數據觀察與行銷邏輯，我所製作的視覺不只是美觀，更致力於達成品牌 KPI。</p>
+                <p>目前積極進修英語與海外職場趨勢，致力於提供具備國際視野與在地行銷力結合的視覺服務。</p>
             </div>
         </div>
     </section>
@@ -157,47 +168,79 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-y-48 md:gap-x-16 items-start">
             
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal(
-                    'Branding', 
-                    '早稻田日式涮涮鍋', 
-                    '早稻田是一間經營超過20年的在地火鍋老店。業主期望在數位時代重新建立品牌形象，讓店面煥然一新同時保有火鍋特有的熱氣感與親和力。', 
-                    '設計核心聚焦於「活潑」與「火鍋Icon」的結合。將傳統鍋具轉化為流暢的視覺符號，並搭配暖色調包裝設計，提升外帶與內用的品牌價值感。', 
-                    '100% 視覺完整度',
-                    ['早稻田店面logo示意圖.jpg', '早稻田logo.png', '早稻田包裝1.jpg', '早稻田包裝2.jpg']
-                 )">
+                onclick="openModal('早稻田日式涮涮鍋', '這是一間經營超過 20 年的在地老店。業主期望在保留傳統親和力的前提下，透過品牌視覺重塑，讓店面呈現出現代、專業且具備溫馨感的「新老店」形象。', '設計全新活潑的品牌標誌系統，將火鍋 Icon 與日式簡約線條結合。同時規劃店面招牌示意圖、外帶包裝袋（包含質感紙袋與封口貼紙），確保品牌在實體接觸點上的視覺一致性。', '100% 品牌形象提升', '早稻田店面logo示意圖.jpg')">
                 <div class="overflow-hidden aspect-[16/10] editorial-border p-3 bg-white relative">
                     <div class="w-full h-full bg-zinc-100 overflow-hidden">
-                        <img src="早稻田店面logo示意圖.jpg" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105">
+                        <img src="早稻田店面logo示意圖.jpg" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" alt="早稻田日式涮涮鍋">
                     </div>
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
                     <div>
                         <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Branding Identity</span>
-                        <h3 class="font-serif text-3xl">老店翻新：早稻田火鍋店</h3>
+                        <h3 class="font-serif text-3xl">老店翻新：早稻田日式涮涮鍋</h3>
                     </div>
-                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2025</p>
+                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose">Case Study 2025 ↑</p>
                 </div>
             </div>
 
             <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Social Media', '漢聲廣播電台', '數位化轉型需求...', 'AI 驅動工作流...', 'AI 視覺實踐', [])">
-                <div class="overflow-hidden aspect-[3/4] editorial-border p-3 bg-white flex items-center justify-center text-center">
-                    <p class="text-xs opacity-20 italic px-4">漢聲專案作品圖</p>
+                onclick="openModal('商品去背與情境攝影', '產品攝影與修圖', '攝影 + 去背修圖', '100% 品牌風格一致性', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000')">
+                <div class="overflow-hidden aspect-[3/4] editorial-border p-3 bg-white">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0">
                 </div>
                 <div class="mt-8">
-                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Social Strategy</span>
-                    <h3 class="font-serif text-2xl">電台數位內容：AI 圖文實踐</h3>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Photography</span>
+                    <h3 class="font-serif text-2xl">商品去背與情境攝影</h3>
                 </div>
             </div>
-
+        </div>
+    </section>
+    <section class="py-40 px-8 md:px-20 border-t border-zinc-200 bg-zinc-900 text-white">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div class="md:col-span-4 reveal">
+                <h2 class="text-xs tracking-[0.5em] uppercase text-accent mb-12 italic">03 / Expertise</h2>
+            </div>
+            <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-20 reveal">
+                <div>
+                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-accent underline-offset-8">Design & Code</h4>
+                    <ul class="text-[11px] tracking-[0.2em] uppercase space-y-4 opacity-70">
+                        <li>Ps / Ai / Id / Figma</li>
+                        <li>HTML / CSS / JavaScript</li>
+                        <li>AI Workflow (Image & Copy Gen)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-accent underline-offset-8">Marketing</h4>
+                    <ul class="text-[11px] tracking-[0.2em] uppercase space-y-4 opacity-70">
+                        <li>Social Content Strategy</li>
+                        <li>Event Planning</li>
+                        <li>Branding Identity</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer id="contact" class="py-32 px-8 md:px-20 border-t border-zinc-200">
-        </footer>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
+            <div class="reveal">
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-30 mb-8 font-bold">Start a Conversation</p>
+                <a href="mailto:hello@visualarchive.com" class="font-serif text-4xl md:text-6xl hover:text-accent transition-all duration-500 block underline underline-offset-[16px] decoration-zinc-200 hover:decoration-accent">
+                    hello@visualarchive.com
+                </a>
+            </div>
+            <div class="flex flex-col md:items-end gap-10 reveal text-zinc-900">
+                <div class="flex gap-12 text-[10px] tracking-[0.3em] uppercase font-bold">
+                    <a href="#" class="hover:opacity-50 transition-opacity">LinkedIn</a>
+                    <a href="#" class="hover:opacity-50 transition-opacity">Behance</a>
+                </div>
+                <p class="text-[8px] tracking-[0.2em] opacity-30">BASED IN TAIPEI. 2026 ARCHIVE.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Opening Animation
+        // 開場動畫
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             const loaderText = document.getElementById('loader-text');
@@ -210,41 +253,23 @@
             }, 3200);
         });
 
-        // 修改後的 Modal Control，增加圖片陣列處理
-        function openModal(cat, title, bg, sol, impact, images) {
-            document.getElementById('modal-category').innerText = cat;
+        // 假分頁 Modal 控制 (更新後支援圖片切換)
+        function openModal(title, bg, role, impact, imgSrc) {
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-bg').innerText = bg;
-            document.getElementById('modal-sol').innerText = sol;
+            document.getElementById('modal-role').innerText = role;
             
-            // 處理專案亮點文字
-            const impactData = impact.split(' ');
-            document.getElementById('modal-impact').innerHTML = `
-                <div>
-                    <h4 class="text-5xl font-serif italic mb-2">${impactData[0]}</h4>
-                    <p class="text-[10px] uppercase tracking-widest opacity-60">${impactData.slice(1).join(' ')}</p>
-                </div>
-            `;
-
-            // 處理圖片藝廊佈局
-            const imgContainer = document.getElementById('modal-img-container');
-            if (images.length > 0) {
-                let html = `<div class="aspect-video bg-zinc-100 editorial-border mb-8 overflow-hidden">
-                                <img src="${images[0]}" class="w-full h-full object-cover">
-                            </div>`;
-                
-                if (images.length > 1) {
-                    html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-8">`;
-                    for (let i = 1; i < images.length; i++) {
-                        html += `<div class="editorial-border p-2 bg-white">
-                                    <img src="${images[i]}" class="w-full object-contain">
-                                 </div>`;
-                    }
-                    html += `</div>`;
-                }
-                imgContainer.innerHTML = html;
-            } else {
-                imgContainer.innerHTML = `<div class="aspect-video bg-zinc-100 editorial-border flex items-center justify-center italic opacity-20">No Image Preview</div>`;
+            // 處理成效文字切割
+            const parts = impact.split(' ');
+            const value = parts[0];
+            const description = parts.slice(1).join(' ');
+            
+            document.getElementById('modal-impact').innerHTML = `<div><h4 class="text-5xl font-serif italic mb-2">${value}</h4><p class="text-[10px] uppercase tracking-widest opacity-60">${description}</p></div>`;
+            
+            // 更新 Modal 內的圖片
+            const imgContainer = document.getElementById('modal-img');
+            if(imgSrc) {
+                imgContainer.innerHTML = `<img src="${imgSrc}" class="w-full h-full object-cover">`;
             }
             
             document.getElementById('project-modal').style.display = 'block';
@@ -256,19 +281,23 @@
             document.body.style.overflow = 'auto';
         }
 
-        // 游標與滾動監測
+        // 游標
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
         });
 
+        // 導覽
         const menuBtn = document.getElementById('menu-btn');
         const menuOverlay = document.getElementById('menu-overlay');
-        menuBtn.addEventListener('click', () => {
+        function toggleMenu() {
             menuOverlay.classList.toggle('open');
             document.body.classList.toggle('overflow-hidden');
-        });
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+        document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', toggleMenu));
 
+        // 觀察者
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.1 });
