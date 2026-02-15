@@ -205,13 +205,27 @@
             </div>
 
             <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Social Strategy', '漢聲電台：數位轉型規劃', '由於電台閱聽眾年齡層偏高，在擔任社群小編期間，致力於將傳統廣播內容進行數位化轉譯，目的是透過視覺媒體吸引更多年輕族群關注。', '導入 AI 工具建立高效工作流，將廣播節目音頻自動轉錄為逐字稿，並從年輕人視角出發，將內容重新策劃成雜誌風格的社群專欄圖文。', 'AI 驅動 工作流優化', ['識別證＿應用情境圖4.jpg', '識別證＿應用情境圖1.jpg', '識別證＿應用情境圖5.jpg'])">
+                 onclick="openModal('Brand Campaign', 'Chieu Faye：女性創業圓夢計畫', '針對捷運車廂廣告進行視覺開發，目標在傳達品牌的高級感與職涯女性的自信。此計畫致力於賦能女性創業者，在繁忙的城市移動中捕捉視覺焦點。', '採用低飽和度的優雅色調，並結合捷運車廂實景展現空間張力。考量捷運移動時的視覺停留點，優化掃碼位置與標語呈現比例，確保在動態環境下依然具備高識別度。', '10W+ 線下廣告曝光', ['IMG_2624.jpg', '三人.jpg', '妙智.jpg', 'nana.jpg', '羚安.jpg'])">
                 <div class="overflow-hidden aspect-[3/4] editorial-border bg-zinc-100 relative">
-                    <img src="識別證＿應用情境圖2.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="漢聲電台專題封面">
+                    <img src="IMG_2624.JPG" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="捷運海報專案封面">
                 </div>
                 <div class="mt-8">
-                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Social Strategy</span>
-                    <h3 class="font-serif text-2xl">漢聲電台：數位轉型規劃</h3>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Brand Campaign</span>
+                    <h3 class="font-serif text-2xl">Chieu Faye：捷運廣告視覺規劃</h3>
+                </div>
+            </div>
+
+            <div class="md:col-span-8 reveal project-card group cursor-pointer" 
+                 onclick="openModal('Social Strategy', '漢聲電台：數位轉型規劃', '由於電台閱聽眾年齡層偏高，在擔任社群小編期間，致力於將傳統廣播內容進行數位化轉譯，目的是透過視覺媒體吸引更多年輕族群關注。', '導入 AI 工具建立高效工作流，將廣播節目音頻自動轉錄為逐字稿，並從年輕人視視角出發，將內容重新策劃成雜誌風格的社群專欄圖文。', 'AI 驅動 工作流優化', ['識別證＿應用情境圖4.jpg', '識別證＿應用情境圖1.jpg', '識別證＿應用情境圖5.jpg'])">
+                <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 relative">
+                    <img src="識別證＿應用情境圖2.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="漢聲電台專題封面">
+                </div>
+                <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
+                    <div>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Social Strategy</span>
+                        <h3 class="font-serif text-3xl">漢聲電台：數位轉型規劃</h3>
+                    </div>
+                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2025</p>
                 </div>
             </div>
 
@@ -230,8 +244,8 @@
                     <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2024</p>
                 </div>
             </div>
-            </div>
-    </section>
+        </div>
+        </section>
 
     <section class="py-40 px-8 md:px-20 border-t border-zinc-200 bg-zinc-900 text-white">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
@@ -329,10 +343,12 @@
                 let i = 0;
                 while (i < imgs.length) {
                     if (i === 0) {
+                        // 第一張：Hero Image (情境模擬圖)
                         const heroImg = createEditorialImg(imgs[i]);
                         imgContainer.appendChild(createFrame(heroImg));
                         i++;
                     } else if (i === 1 && imgs.length >= 3) {
+                        // 第二、三張：Grid Layout (放置模特兒海報細節)
                         const gridDiv = document.createElement('div');
                         gridDiv.className = 'grid grid-cols-2 gap-4 md:gap-8';
                         gridDiv.appendChild(createEditorialImg(imgs[i]));
@@ -340,7 +356,8 @@
                         imgContainer.appendChild(createFrame(gridDiv));
                         i += 2;
                     } else {
-                        const singleImg = createEditorialImg(imgs[i], 'w-4/5 mx-auto');
+                        // 剩餘：單張寬幅呈現
+                        const singleImg = createEditorialImg(imgs[i], 'w-full mx-auto');
                         imgContainer.appendChild(createFrame(singleImg));
                         i++;
                     }
