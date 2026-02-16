@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charlie Li | Visual Designer & Marketing Planner</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #FAF9F6;
@@ -46,6 +46,69 @@
             z-index: 200; display: none;
             overflow-y: auto;
         }
+
+        /* --- [START] MODAL CLOSE BUTTON OPTIMIZATION --- */
+        .modal-close-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            width: 54px;
+            height: 54px;
+            background: rgba(26, 26, 26, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(26, 26, 26, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.8) rotate(-45deg);
+        }
+
+        #project-modal[style*="display: block"] .modal-close-btn {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+            transition-delay: 0.5s;
+        }
+
+        .modal-close-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(128, 0, 32, 0.2);
+        }
+
+        .modal-close-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--text-color);
+            transition: stroke 0.4s ease;
+        }
+
+        .modal-close-btn:hover svg {
+            stroke: #ffffff;
+        }
+
+        /* 擴大實際感應區，優化 UX 易用性 */
+        .modal-close-btn::after {
+            content: '';
+            position: absolute;
+            inset: -15px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-close-btn {
+                top: 1.5rem;
+                right: 1.5rem;
+                width: 48px;
+                height: 48px;
+            }
+        }
+        /* --- [END] MODAL CLOSE BUTTON OPTIMIZATION --- */
         
         #menu-overlay {
             clip-path: circle(0% at 95% 5%);
@@ -82,13 +145,21 @@
     </div>
 
     <div id="project-modal" class="p-8 md:p-20">
+        
+        <button onclick="closeModal()" class="modal-close-btn" aria-label="Close Project">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+
         <div class="flex justify-between items-start mb-20">
             <div>
                 <p id="modal-category" class="text-[10px] tracking-[0.4em] uppercase text-accent font-bold mb-4">Category</p>
                 <h2 id="modal-title" class="text-5xl md:text-7xl font-serif italic">Project Title</h2>
             </div>
-            <button onclick="closeModal()" class="text-[10px] tracking-[0.4em] uppercase hover:text-accent transition-colors">Close ✕</button>
+            <div class="hidden md:block w-20"></div>
         </div>
+
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-8">
                 <div id="modal-img-container" class="grid grid-cols-1 gap-0 mb-12">
@@ -360,12 +431,10 @@
                 let i = 0;
                 while (i < imgs.length) {
                     if (i === 0) {
-                        // 第一張：Hero Image (情境模擬圖)
                         const heroImg = createEditorialImg(imgs[i]);
                         imgContainer.appendChild(createFrame(heroImg));
                         i++;
                     } else if (i === 1 && imgs.length >= 3) {
-                        // 第二、三張：Grid Layout (放置模特兒海報細節)
                         const gridDiv = document.createElement('div');
                         gridDiv.className = 'grid grid-cols-2 gap-4 md:gap-8';
                         gridDiv.appendChild(createEditorialImg(imgs[i]));
@@ -373,7 +442,6 @@
                         imgContainer.appendChild(createFrame(gridDiv));
                         i += 2;
                     } else {
-                        // 剩餘：單張寬幅呈現
                         const singleImg = createEditorialImg(imgs[i], 'w-full mx-auto');
                         imgContainer.appendChild(createFrame(singleImg));
                         i++;
@@ -394,16 +462,32 @@
             
             document.getElementById('project-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
+            
+            // 監聽鍵盤 Esc
+            window.addEventListener('keydown', handleEsc);
         }
 
         function closeModal() {
             document.getElementById('project-modal').style.display = 'none';
             document.body.style.overflow = 'auto';
+            window.removeEventListener('keydown', handleEsc);
         }
 
+        // [New] Keyboard Accessibility: ESC 鍵退出
+        function handleEsc(e) {
+            if (e.key === 'Escape') closeModal();
+        }
+
+        // Cursor Logic
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+        });
+
+        // 按鈕縮放微交互
+        document.querySelectorAll('button, a, .project-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(4)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
         });
 
         const menuBtn = document.getElementById('menu-btn');
