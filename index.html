@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charlie Li | Visual Designer & Marketing Planner</title>
+    <title>Charlie Li | Rationality in Design. Madness in Strategy.</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #FAF9F6;
             --text-color: #1a1a1a;
-            --accent-color: #800020;
+            --accent-color: #000000; /* 調整為極簡黑 */
+            --acid-color: #DFFF00;  /* 注入：酸性螢光綠 */
         }
+        
+        /* 視覺刺點：文字選取背景 */
+        ::selection {
+            background: var(--acid-color);
+            color: #000;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -33,15 +41,14 @@
             overflow: hidden;
         }
 
-        /* 全域意圖游標樣式 */
         #cursor.close-mode {
             width: 80px; height: 80px;
-            background: var(--accent-color);
-            transform: translate(-50%, -50%); /* 修正中心點 */
+            background: var(--acid-color); /* 閉合模式使用酸性色 */
+            transform: translate(-50%, -50%);
         }
         #cursor.close-mode::before {
             content: 'CLOSE';
-            color: white;
+            color: #000;
             font-size: 9px;
             font-weight: 600;
             letter-spacing: 0.2em;
@@ -64,11 +71,10 @@
             overflow-y: auto;
         }
 
-        /* --- [START] MODAL CLOSE BUTTON OPTIMIZATION --- */
         @keyframes modalPulse {
-            0% { box-shadow: 0 0 0 0 rgba(128, 0, 32, 0.2); }
-            70% { box-shadow: 0 0 0 15px rgba(128, 0, 32, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(128, 0, 32, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(223, 255, 0, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(223, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(223, 255, 0, 0); }
         }
 
         .modal-close-btn {
@@ -93,7 +99,6 @@
             animation: modalPulse 2s infinite;
         }
 
-        /* 快捷提示 ESC */
         .modal-close-btn::before {
             content: 'ESC';
             position: absolute;
@@ -112,8 +117,8 @@
         }
 
         .modal-close-btn:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
+            background: var(--acid-color);
+            border-color: var(--acid-color);
             transform: scale(1.1);
             animation: none;
         }
@@ -125,27 +130,6 @@
             transition: stroke 0.4s ease;
         }
 
-        .modal-close-btn:hover svg {
-            stroke: #ffffff;
-        }
-
-        .modal-close-btn::after {
-            content: '';
-            position: absolute;
-            inset: -15px;
-        }
-
-        @media (max-width: 768px) {
-            .modal-close-btn {
-                top: 1.5rem;
-                right: 1.5rem;
-                width: 48px;
-                height: 48px;
-            }
-            .modal-close-btn::before { display: none; }
-        }
-        /* --- [END] MODAL CLOSE BUTTON OPTIMIZATION --- */
-        
         #menu-overlay {
             clip-path: circle(0% at 95% 5%);
             transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
@@ -158,13 +142,13 @@
 
         #loader {
             position: fixed; inset: 0;
-            background-color: var(--bg-color);
+            background-color: #000;
             display: flex; align-items: center; justify-content: center;
             z-index: 1000;
             transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        .loader-text-wrapper { overflow: hidden; }
         #loader-text {
+            color: var(--acid-color);
             transform: translateY(100%);
             transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
@@ -181,7 +165,6 @@
     </div>
 
     <div id="project-modal" class="p-8 md:p-20">
-        
         <button onclick="closeModal()" class="modal-close-btn" aria-label="Close Project">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 6L6 18M6 6L18 18" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -190,7 +173,7 @@
 
         <div class="flex justify-between items-start mb-20">
             <div>
-                <p id="modal-category" class="text-[10px] tracking-[0.4em] uppercase text-accent font-bold mb-4">Category</p>
+                <p id="modal-category" class="text-[10px] tracking-[0.4em] uppercase text-zinc-400 font-bold mb-4">Category</p>
                 <h2 id="modal-title" class="text-5xl md:text-7xl font-serif italic">Project Title</h2>
             </div>
             <div class="hidden md:block w-20"></div>
@@ -198,23 +181,21 @@
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-8">
-                <div id="modal-img-container" class="grid grid-cols-1 gap-0 mb-12">
-                </div>
+                <div id="modal-img-container" class="grid grid-cols-1 gap-0 mb-12"></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-80 border-t border-zinc-100 pt-12">
                     <div>
-                        <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">專案背景 / Background</p>
+                        <p class="font-bold mb-4 uppercase tracking-widest text-black italic">理性的設計思維 / Context</p>
                         <p id="modal-bg">內容填充中...</p>
                     </div>
                     <div>
-                        <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">設計方案 / Solution</p>
+                        <p class="font-bold mb-4 uppercase tracking-widest text-black italic">瘋狂的解決方案 / Solution</p>
                         <p id="modal-sol">內容填充中...</p>
                     </div>
                 </div>
             </div>
             <div class="md:col-span-4 border-l border-zinc-200 pl-8">
-                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8">專案亮點 / Impact</p>
-                <div id="modal-impact" class="space-y-12">
-                    </div>
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8 font-bold">商業轉化亮點 / Impact</p>
+                <div id="modal-impact" class="space-y-12"></div>
             </div>
         </div>
     </div>
@@ -223,9 +204,9 @@
 
     <div id="menu-overlay" class="fixed inset-0 z-[60] flex items-center justify-center">
         <nav class="text-center space-y-12">
-            <a href="#about" class="menu-link block text-5xl font-serif hover:italic transition-all">About</a>
-            <a href="#work" class="menu-link block text-5xl font-serif hover:italic transition-all">Work</a>
-            <a href="#contact" class="menu-link block text-5xl font-serif hover:italic transition-all">Contact</a>
+            <a href="#about" class="menu-link block text-5xl font-serif hover:italic hover:text-acid transition-all">About</a>
+            <a href="#work" class="menu-link block text-5xl font-serif hover:italic hover:text-acid transition-all">Work</a>
+            <a href="#contact" class="menu-link block text-5xl font-serif hover:italic hover:text-acid transition-all">Contact</a>
         </nav>
     </div>
 
@@ -240,166 +221,147 @@
     <section class="min-h-screen flex items-center px-8 md:px-20 relative pt-20">
         <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center border-t border-b border-zinc-200 py-24 relative">
             <div class="md:col-span-1 hidden md:block">
-                <p class="rotate-90 origin-left text-[8px] tracking-[0.6em] uppercase opacity-30 whitespace-nowrap italic">Visual Designer & Marketing Planner</p>
+                <p class="rotate-90 origin-left text-[8px] tracking-[0.6em] uppercase opacity-30 whitespace-nowrap italic font-bold">Visual Designer & Marketing Planner</p>
             </div>
-            <div class="col-span-12 md:col-span-8 z-10 reveal">
-                <span class="text-[10px] tracking-[0.4em] uppercase text-accent font-bold mb-6 block">— 以行銷思維驅動視覺設計</span>
-                <h1 class="text-[10vw] md:text-[7vw] font-serif leading-[0.9] tracking-tighter text-zinc-900">
-                    Visual Strategy <br>
-                    <span class="italic text-accent">Marketing Focused</span>
+            <div class="col-span-12 md:col-span-10 z-10 reveal">
+                <span class="text-[10px] tracking-[0.4em] uppercase text-zinc-400 font-bold mb-6 block">— 以行銷思維驅動視覺設計</span>
+                <h1 class="text-[9vw] md:text-[6vw] font-serif leading-[0.9] tracking-tighter text-zinc-900">
+                    Rationality in Design. <br>
+                    <span class="italic text-zinc-400">Madness in Strategy.</span>
                 </h1>
-                <p class="mt-8 max-w-lg text-sm opacity-60 leading-relaxed">
-                    我是李淳甫 Charlie，專注於品牌轉譯與視覺優化。透過數據洞察與行銷邏輯，讓視覺不只是美觀，更是達成品牌增長的解決方案。
+                <p class="mt-8 max-w-xl text-sm opacity-80 leading-relaxed font-light">
+                    我是李淳甫 Charlie。一個腦內充滿胡思亂想的創意人，一個對商業轉換有著強烈責任感的行銷企劃。我將多媒體與工業設計的立體思維，降維打擊至平面視覺與數位體驗之中，為品牌提供無可取代的解決方案。
                 </p>
                 <div class="mt-16 flex flex-wrap gap-8">
-                    <a href="#work" class="px-8 py-4 border border-zinc-900 text-[10px] uppercase tracking-widest hover:bg-zinc-900 hover:text-white transition-all">View Archive</a>
-                    <a href="#contact" class="px-8 py-4 bg-accent text-white text-[10px] uppercase tracking-widest hover:opacity-80 transition-all">Hire Me</a>
+                    <a href="#work" class="px-10 py-5 border border-zinc-900 text-[10px] uppercase tracking-widest hover:bg-zinc-900 hover:text-white transition-all">The Archive</a>
+                    <a href="#contact" class="px-10 py-5 bg-zinc-900 text-white text-[10px] uppercase tracking-widest hover:bg-acid-color hover:text-black transition-all">Hire Me</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-40 px-8 md:px-20 bg-white/40">
+    <section id="about" class="py-40 px-8 md:px-20 bg-white">
         <div class="max-w-4xl reveal">
-            <h2 class="text-xs tracking-[0.5em] uppercase text-accent mb-12">01 / About Me</h2>
+            <h2 class="text-xs tracking-[0.5em] uppercase text-zinc-400 mb-12 font-bold">01 / The Soul</h2>
             <p class="font-serif text-3xl md:text-5xl leading-tight mb-12">
-                我不只是一位設計師，更是一位 <span class="italic text-accent">問題解決者</span>。
+                我不只是一位設計師，更是一位擁有極致責任感的 <span class="italic underline decoration-acid-color decoration-8 underline-offset-8">問題解決者</span>。
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-70 font-light mb-20">
-                <p>畢業於朝陽科技大學工業設計系，具備跨足平面設計、數位行銷與品牌規劃的綜合背景。我擅長將複雜的商業需求轉化為具感染力的視覺語言。</p>
-                <p>曾服務於漢聲廣播電台、GU 與 2nd STREET，並負責過文化部社區營造等多項大型專案，目前正積極整合 AI 工作流，為客戶創造更具效率且前瞻的設計服務。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-80 font-light mb-20">
+                <p>畢業於朝陽科技大學工業設計系，這賦予了我從三維構造出發的邏輯韌性。自尊心強且責任感極高的特質，驅使我不斷追求設計在商業端的落地精度。</p>
+                <p>我具備掌控從實體包裝結構到前端數位自動化（HTML / GAS / AI 輔助）的整合執行能力。對我而言，設計不只是視覺的裝飾，而是透過數據洞察與行銷邏輯，解決痛點並驅動增長的利器。</p>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-zinc-200 pt-12">
                 <div>
-                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Service 01</p>
-                    <p class="font-serif italic text-lg">品牌識別規劃</p>
+                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Methodology</p>
+                    <p class="font-serif italic text-lg">結構化視覺策略</p>
                 </div>
                 <div>
-                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Service 02</p>
-                    <p class="font-serif italic text-lg">社群內容行銷</p>
+                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Execution</p>
+                    <p class="font-serif italic text-lg">數位流程自動化</p>
                 </div>
                 <div>
-                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Service 03</p>
-                    <p class="font-serif italic text-lg">商業攝影美編</p>
+                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Service</p>
+                    <p class="font-serif italic text-lg">品牌識別重塑</p>
                 </div>
                 <div>
-                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Service 04</p>
-                    <p class="font-serif italic text-lg">數位媒體製作</p>
+                    <p class="text-[10px] tracking-widest uppercase mb-4 opacity-40">Obsession</p>
+                    <p class="font-serif italic text-lg">人文雜誌質感</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="work" class="py-40 px-8 md:px-20">
-        <h2 class="text-xs tracking-[0.5em] uppercase text-accent mb-20 reveal">02 / Selected Works</h2>
+        <h2 class="text-xs tracking-[0.5em] uppercase text-zinc-400 mb-20 reveal font-bold">02 / Selected Works</h2>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-y-48 md:gap-x-16 items-start">
             
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Brand Identity', 'JOJO FLOWER 品牌視覺設計', '以優雅細線條勾勒女性與花卉的交織，選用低飽和大地色調，建立品牌溫柔且高級的視覺識別。', '設計包含 Logo 標誌系統、名片印刷質感、實體門市招牌應用、系列包裝紙袋設計，以及職人工作圍裙情境。', '優雅高級 視覺識別', ['JOJO_Logo招牌應用情境圖.PNG', 'JOJO名片設計.PNG', 'JOJO名片設計-滿版.PNG', 'JOJO包裝應用情境-1.PNG', 'JOJO包裝應用情境-2.jpg', 'JOJO圍裙穿著應用情境圖-2.jpg', 'JOJO圍裙應用情境圖.PNG', 'JOJO圍裙穿著應用情境圖-2.PNG'])">
+                 onclick="openModal('Packaging & Industrial', '品牌結構煉金術：大型派對餐盒設計', '【專案背景】Mu Zen Tsao 品牌升級需開發專屬大型外帶餐盒。客戶痛點為市售公版缺乏品牌識別度，且結構難以承載高品質外燴餐點重量。', '【設計方案】借鑑韓系 Cadot 幾何美學，發揮工業設計底蘊繪製精準 1:1 刀模。結合加強瓦楞結構與極簡平面佈局，在確保運輸強度的同時，創造精品級的開箱體驗。', '幾何美學 結構革新', ['餐盒封面.PNG', '餐盒詳情1.PNG', '餐盒詳情2.PNG'])">
                 <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 relative">
-                    <div class="w-full h-full overflow-hidden">
-                        <img src="JOJO_Logo招牌應用情境圖.PNG" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="JOJO FLOWER 品牌設計">
-                    </div>
+                    <img src="餐盒封面.PNG" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="派對餐盒設計">
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
                     <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Brand Identity / Graphic Design</span>
-                        <h3 class="font-serif text-3xl">JOJO FLOWER 品牌視覺設計</h3>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-zinc-400 font-bold mb-2 block">Brand Alchemy / Packaging</span>
+                        <h3 class="font-serif text-3xl">品牌結構煉金術：大型派對餐盒設計</h3>
                     </div>
                     <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2026</p>
                 </div>
             </div>
-            <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Branding Strategy', '逸角工程：傳統產業的視覺轉型', '本專案旨在重新定義傳統「拆除與防水工程」的品牌形象。透過視覺重塑，協助業主在保留施工專業的同時，建立出能吸引高端室內裝修市場的信賴感與品牌深度。', '設計核心以幾何線條重新詮釋「鏟子」與「房屋」的關係，並導入深藍與燙金配色提升視覺層次。除名片開發外，同步規劃 Polo 衫、工作背心與帆布袋周邊，將品牌視覺系統完整延伸至工程場域與日常接觸點。', '高端品牌 識別轉型', [ '程勝源-1-03.jpg', '程勝源-1-02.jpg', 'S__61349892_0.jpg', 'S__61349891_0.jpg'])">
+
+            <div class="md:col-span-4 md:mt-32 reveal project-card group cursor-pointer" 
+                 onclick="openModal('Digital Transformation', '數位轉型：互動式多階段訂購網頁', '【專案背景】傳統外燴訂單依賴人工彙整，過程緩慢且易出錯。痛點在於客製化選項繁雜，缺乏即時自動化的溝通工具。', '【技術應用】結合 HTML/Tailwind 與 Google Apps Script (GAS)。開發具備多階段邏輯驗證的表單，並能即時自動生成 PDF 報價單與雲端資料同步，徹底優化商務流程。', '100% 流程自動化', ['網頁封面.PNG', 'GAS截圖.PNG'])">
                 <div class="overflow-hidden aspect-[3/4] editorial-border bg-zinc-100 relative">
-                    <img src="程勝源_應用情境圖.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="逸角工程封面">
+                    <img src="網頁設計封面.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="數位轉型專案">
                 </div>
                 <div class="mt-8">
-                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Branding Strategy</span>
-                    <h3 class="font-serif text-2xl">逸角工程：品牌視覺識別系統設計</h3>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-zinc-400 font-bold mb-2 block">Creative Tech / GAS</span>
+                    <h3 class="font-serif text-2xl">數位轉型：互動式多階段訂購網頁</h3>
                 </div>
             </div>
 
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Brand Campaign', 'Chieu Faye：女性創業圓夢計畫', '針對捷運車廂廣告進行視覺開發，目標在傳達品牌的高級感與職涯女性的自信。此計畫致力於賦能女性創業者，在繁忙的城市移動中捕捉視覺焦點。', '採用低飽和度的優雅色調，並結合捷運車廂實景展現空間張力。考量捷運移動時的視覺停留點，優化掃碼位置與標語呈現比例，確保在動態環境下依然具備高識別度。', '10W+ 線下廣告曝光', ['IMG_2624.JPG', '三人.jpg', '妙智.jpg', 'nana.jpg', '羚安.jpg'])">
+                 onclick="openModal('Brand Identity', 'JOJO FLOWER 品牌視覺設計', '以優雅細線條勾勒女性與花卉的交織，建立溫柔且高級的視覺識別。', '設計包含 Logo 標誌系統、名片印刷質感、系列包裝紙袋設計等。', '優雅高級 視覺識別', ['JOJO_Logo招牌應用情境圖.PNG', 'JOJO名片設計.PNG', 'JOJO圍裙應用情境圖.PNG'])">
                 <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 relative">
-                    <div class="w-full h-full overflow-hidden">
-                        <img src="IMG_2624.JPG" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="捷運海報專案封面">
-                    </div>
+                    <img src="JOJO_Logo招牌應用情境圖.PNG" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="JOJO FLOWER">
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
                     <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Brand Campaign</span>
-                        <h3 class="font-serif text-3xl">Chieu Faye：捷運廣告視覺規劃</h3>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-zinc-400 font-bold mb-2 block">Brand Identity / Graphic</span>
+                        <h3 class="font-serif text-3xl">JOJO FLOWER 品牌視覺設計</h3>
                     </div>
-                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2026</p>
+                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase italic">Case Study 2026</p>
                 </div>
             </div>
 
             <div class="md:col-span-4 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Branding Identity', '老店翻新：早稻田日式涮涮鍋', '這是一間經營超過 20 年的在地老店。業主期望在保留傳統親和力的前提下，透過品牌視覺重塑，讓店面呈現出現代、專業且具備溫馨感的「新老店」形象。', '除了設計全新活潑的品牌標誌系統，更規劃了系列包裝視覺。包含質感紙袋與封口貼紙設計，將火鍋 Icon 與日式簡約線條結合，確保品牌在實體接觸點上的視覺一致性。', '100% 品牌形象提升', ['早稻田店面logo示意圖.png', '包裝紙袋＿應用情境圖1.jpg', '包裝紙袋＿應用情境圖2.jpg', '包裝紙袋＿應用情境圖3.jpg'])">
+                 onclick="openModal('Branding Strategy', '逸角工程：傳統產業視覺轉型', '定義拆除與防水工程的高端形象。', '導入深藍與燙金配色，將品牌視覺系統完整延伸至工程場域。', '高端品牌 識別轉型', [ '程勝源-1-03.jpg', '程勝源-1-02.jpg'])">
                 <div class="overflow-hidden aspect-[3/4] editorial-border bg-zinc-100 relative">
-                    <img src="早稻田店面logo示意圖.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="早稻田火鍋封面">
+                    <img src="程勝源_應用情境圖.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="逸角工程">
                 </div>
                 <div class="mt-8">
-                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Branding Identity</span>
-                    <h3 class="font-serif text-2xl">老店翻新：早稻田日式涮涮鍋</h3>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-zinc-400 font-bold mb-2 block">Branding Strategy</span>
+                    <h3 class="font-serif text-2xl">逸角工程：視覺系統設計</h3>
                 </div>
             </div>
 
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Social Strategy', '漢聲電台：數位轉型規劃', '由於電台閱聽眾年齡層偏高，在擔任社群小編期間，致力於將傳統廣播內容進行數位化轉譯，目的是透過視覺媒體吸引更多年輕族群關注。', '導入 AI 工具建立高效工作流，將廣播節目音頻自動轉錄為逐字稿，並從年輕人視角出發，將內容重新策劃成雜誌風格的社群專欄圖文。', 'AI 驅動 工作流優化', ['識別證＿應用情境圖4.jpg', '識別證＿應用情境圖1.jpg', '識別證＿應用情境圖5.jpg'])">
+                 onclick="openModal('Illustration & Layout', '文化部：蘆竹社區營造計畫', '跨年度大型計畫，重新轉譯社區特色。', '設計具備故事性的插畫與雜誌感版面。', '政府專案 完整視覺執行', ['蘆洲計劃＿應用情境圖4.jpg', '蘆洲計劃＿應用情境圖5.jpg'])">
                 <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 relative">
-                    <img src="識別證＿應用情境圖2.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="漢聲電台專題封面">
+                    <img src="蘆洲計劃＿應用情境圖4.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="文化部專案">
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
                     <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Social Strategy</span>
-                        <h3 class="font-serif text-3xl">漢聲電台：數位轉型規劃</h3>
-                    </div>
-                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2025</p>
-                </div>
-            </div>
-
-            <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Illustration & Layout', '文化部：蘆竹社區營造計畫', '這是一個 113~114 年度的跨年度大型計畫，核心理念為「蘆竹，整個城市都是多元共融的舞台」。旨在透過視覺設計重新轉譯社區特色，增進在地居民與村落文化的連結。', '整合在地標誌性地標（如南崁教堂、五福宮等），設計出一系列具備故事性的手繪插畫與圖標（Icon）。並負責專案刊物的視覺排版規劃，將複雜的社區資訊轉化為易於閱讀的雜誌感版面。', '政府專案 完整視覺執行', ['蘆洲計劃＿應用情境圖３.jpg', '蘆洲計劃＿應用情境圖5.jpg', '蘆洲計劃＿應用情境圖6.jpg'])">
-                <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 relative">
-                    <div class="w-full h-full overflow-hidden">
-                        <img src="蘆洲計劃＿應用情境圖4.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="文化部：蘆竹社區營造計畫封面">
-                    </div>
-                </div>
-                <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
-                    <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Illustration & Layout</span>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-zinc-400 font-bold mb-2 block">Illustration & Layout</span>
                         <h3 class="font-serif text-3xl">文化部：蘆竹社區營造計畫</h3>
                     </div>
-                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2024</p>
+                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase italic">Case Study 2024</p>
                 </div>
             </div>
-            </div>
+        </div>
     </section>
 
     <section class="py-40 px-8 md:px-20 border-t border-zinc-200 bg-zinc-900 text-white">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-4 reveal">
-                <h2 class="text-xs tracking-[0.5em] uppercase text-accent mb-12 italic">03 / Expertise</h2>
+                <h2 class="text-xs tracking-[0.5em] uppercase text-acid-color mb-12 italic font-bold">03 / The Arsenal</h2>
             </div>
             <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-20 reveal">
                 <div>
-                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-accent underline-offset-8">Creative Tech</h4>
+                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-acid-color underline-offset-8">Creative Tech</h4>
                     <ul class="text-[11px] tracking-[0.2em] uppercase space-y-4 opacity-70">
-                        <li>Ai / Ps / Id / LrC / Figma</li>
+                        <li>Ai / Ps / Id / Figma</li>
                         <li>HTML / CSS / Javascript / GAS</li>
-                        <li>AI Workflow / Generative Media</li>
+                        <li>AI Workflow Optimization</li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-accent underline-offset-8">Marketing Role</h4>
+                    <h4 class="font-serif text-2xl italic mb-8 underline decoration-acid-color underline-offset-8">Marketing Role</h4>
                     <ul class="text-[11px] tracking-[0.2em] uppercase space-y-4 opacity-70">
                         <li>Brand Identity Strategy</li>
                         <li>Social Media Planning</li>
-                        <li>Event Visual Management</li>
+                        <li>Packaging Structure Design</li>
                     </ul>
                 </div>
             </div>
@@ -409,15 +371,15 @@
     <footer id="contact" class="py-32 px-8 md:px-20 border-t border-zinc-200">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
             <div class="reveal">
-                <p class="text-[10px] tracking-[0.4em] uppercase opacity-30 mb-8 font-bold">Collaborate with me</p>
-                <a href="mailto:hello@visualarchive.com" class="font-serif text-4xl md:text-6xl hover:text-accent transition-all duration-500 block underline underline-offset-[16px] decoration-zinc-200 hover:decoration-accent">
-                    Say Hello.
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8 font-bold text-black">Not your average designer.</p>
+                <a href="mailto:hello@visualarchive.com" class="font-serif text-4xl md:text-6xl hover:text-acid transition-all duration-500 block underline underline-offset-[16px] decoration-zinc-200 hover:decoration-acid-color">
+                    準備好給你的品牌一點不一樣的衝擊了嗎？
                 </a>
             </div>
             <div class="flex flex-col md:items-end gap-10 reveal text-zinc-900">
                 <div class="flex gap-12 text-[10px] tracking-[0.3em] uppercase font-bold">
-                    <a href="#" class="hover:opacity-50 transition-opacity">Instagram</a>
-                    <a href="#" class="hover:opacity-50 transition-opacity">Behance</a>
+                    <a href="#" class="hover:text-acid-color transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-acid-color transition-colors">Behance</a>
                 </div>
                 <p class="text-[8px] tracking-[0.2em] opacity-30 text-right uppercase">
                     Designed for 2026 Archive. <br> Based in Taipei / Taoyuan.
@@ -427,20 +389,18 @@
     </footer>
 
     <script>
-        // Opening Animation
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             const loaderText = document.getElementById('loader-text');
             setTimeout(() => { loaderText.style.transform = 'translateY(0)'; }, 300);
-            setTimeout(() => { loader.style.transform = 'translateY(-100%)'; }, 2200);
+            setTimeout(() => { loader.style.transform = 'translateY(-100%)'; }, 2000);
             setTimeout(() => {
                 document.body.classList.remove('overflow-hidden');
                 loader.remove();
                 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-            }, 3200);
+            }, 3000);
         });
 
-        // Helper: 創建標準化雜誌感圖片元素
         function createEditorialImg(src, customClass = "") {
             const img = document.createElement('img');
             img.src = src;
@@ -449,20 +409,15 @@
             return img;
         }
 
-        // Helper: 創建同步背景的展示框架
         function createFrame(content, extraClass = "") {
             const frame = document.createElement('div');
             frame.style.backgroundColor = 'var(--bg-color)';
             frame.className = `p-0 editorial-border mb-12 md:mb-16 last:mb-0 overflow-hidden ${extraClass}`;
-            if (typeof content === 'string') {
-                frame.innerHTML = content;
-            } else {
-                frame.appendChild(content);
-            }
+            if (typeof content === 'string') frame.innerHTML = content;
+            else frame.appendChild(content);
             return frame;
         }
 
-        // Editorial Grid 動態渲染邏輯
         function openModal(cat, title, bg, sol, impact, imgs) {
             document.getElementById('modal-category').innerText = cat;
             document.getElementById('modal-title').innerText = title;
@@ -473,44 +428,25 @@
             imgContainer.innerHTML = ''; 
             
             if (imgs && imgs.length > 0) {
-                let i = 0;
-                while (i < imgs.length) {
-                    if (i === 0) {
-                        const heroImg = createEditorialImg(imgs[i]);
-                        imgContainer.appendChild(createFrame(heroImg));
-                        i++;
-                    } else if (i === 1 && imgs.length >= 3) {
-                        const gridDiv = document.createElement('div');
-                        gridDiv.className = 'grid grid-cols-2 gap-4 md:gap-8';
-                        gridDiv.appendChild(createEditorialImg(imgs[i]));
-                        gridDiv.appendChild(createEditorialImg(imgs[i+1]));
-                        imgContainer.appendChild(createFrame(gridDiv));
-                        i += 2;
-                    } else {
-                        const singleImg = createEditorialImg(imgs[i], 'w-full mx-auto');
-                        imgContainer.appendChild(createFrame(singleImg));
-                        i++;
-                    }
-                }
+                imgs.forEach((src, idx) => {
+                    imgContainer.appendChild(createFrame(createEditorialImg(src)));
+                });
                 imgContainer.style.display = 'grid'; 
-            } else {
-                imgContainer.style.display = 'none';
             }
 
             const impactData = impact.split(' ');
             document.getElementById('modal-impact').innerHTML = `
-                <div>
-                    <h4 class="text-5xl font-serif italic mb-2">${impactData[0]}</h4>
-                    <p class="text-[10px] uppercase tracking-widest opacity-60">${impactData.slice(1).join(' ')}</p>
+                <div class="border-l-4 border-acid-color pl-6">
+                    <h4 class="text-6xl font-serif italic mb-2">${impactData[0]}</h4>
+                    <p class="text-[10px] uppercase tracking-widest font-bold opacity-60">${impactData.slice(1).join(' ')}</p>
                 </div>
             `;
 
-            // [New] 動態插入 End-of-Stream CTA
             const ctaDiv = document.createElement('div');
             ctaDiv.className = 'mt-32 border-t border-zinc-100 pt-20 pb-40 flex flex-col items-center';
             ctaDiv.innerHTML = `
                 <button onclick="closeModal()" class="group inline-flex flex-col items-center focus:outline-none">
-                    <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 mb-4 group-hover:text-accent group-hover:opacity-100 transition-all">Back to Archive</span>
+                    <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 mb-4 group-hover:text-acid-color transition-all">Back to Archive</span>
                     <span class="font-serif text-4xl md:text-6xl italic group-hover:translate-y-[-10px] transition-transform duration-500">返回作品列表</span>
                 </button>
             `;
@@ -518,8 +454,6 @@
             
             document.getElementById('project-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
-            
-            // 監聽鍵盤 Esc
             window.addEventListener('keydown', handleEsc);
         }
 
@@ -530,37 +464,20 @@
             window.removeEventListener('keydown', handleEsc);
         }
 
-        // [New] Keyboard Accessibility: ESC 鍵退出
-        function handleEsc(e) {
-            if (e.key === 'Escape') closeModal();
-        }
+        function handleEsc(e) { if (e.key === 'Escape') closeModal(); }
 
-        // Cursor Logic
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-
-            // [New] 全域意圖游標判斷：若 Modal 開啟且游標在背景區
+            cursor.style.left = e.clientX + 'px'; 
+            cursor.style.top = e.clientY + 'px';
             const modal = document.getElementById('project-modal');
-            if (modal.style.display === 'block') {
-                if (e.target.id === 'project-modal') {
-                    cursor.classList.add('close-mode');
-                } else {
-                    cursor.classList.remove('close-mode');
-                }
-            } else {
-                cursor.classList.remove('close-mode');
-            }
+            if (modal.style.display === 'block' && e.target.id === 'project-modal') cursor.classList.add('close-mode');
+            else cursor.classList.remove('close-mode');
         });
 
-        // 按鈕縮放微交互
         document.querySelectorAll('button, a, .project-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                if (!cursor.classList.contains('close-mode')) cursor.style.transform = 'scale(4)';
-            });
-            el.addEventListener('mouseleave', () => {
-                if (!cursor.classList.contains('close-mode')) cursor.style.transform = 'scale(1)';
-            });
+            el.addEventListener('mouseenter', () => { if (!cursor.classList.contains('close-mode')) cursor.style.transform = 'scale(4)'; });
+            el.addEventListener('mouseleave', () => { if (!cursor.classList.contains('close-mode')) cursor.style.transform = 'scale(1)'; });
         });
 
         const menuBtn = document.getElementById('menu-btn');
