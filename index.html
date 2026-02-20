@@ -33,11 +33,10 @@
             overflow: hidden;
         }
 
-        /* 全域意圖游標樣式 */
         #cursor.close-mode {
             width: 80px; height: 80px;
             background: var(--accent-color);
-            transform: translate(-50%, -50%); /* 修正中心點 */
+            transform: translate(-50%, -50%);
         }
         #cursor.close-mode::before {
             content: 'CLOSE';
@@ -64,7 +63,6 @@
             overflow-y: auto;
         }
 
-        /* --- [START] MODAL CLOSE BUTTON OPTIMIZATION --- */
         @keyframes modalPulse {
             0% { box-shadow: 0 0 0 0 rgba(128, 0, 32, 0.2); }
             70% { box-shadow: 0 0 0 15px rgba(128, 0, 32, 0); }
@@ -93,7 +91,6 @@
             animation: modalPulse 2s infinite;
         }
 
-        /* 快捷提示 ESC */
         .modal-close-btn::before {
             content: 'ESC';
             position: absolute;
@@ -144,7 +141,6 @@
             }
             .modal-close-btn::before { display: none; }
         }
-        /* --- [END] MODAL CLOSE BUTTON OPTIMIZATION --- */
         
         #menu-overlay {
             clip-path: circle(0% at 95% 5%);
@@ -202,19 +198,19 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm leading-loose opacity-80 border-t border-zinc-100 pt-12">
                     <div>
-                        <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">專案背景 / Background</p>
-                        <p id="modal-bg">內容填充中...</p>
+                        <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">專案背景與目標 / Context & Objectives</p>
+                        <p id="modal-bg" style="white-space: pre-line;">內容填充中...</p>
                     </div>
                     <div>
-                        <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">設計方案 / Solution</p>
-                        <p id="modal-sol">內容填充中...</p>
+                        <p class="font-bold mb-4 uppercase tracking-widest text-accent italic">執行策略與交付 / Strategy & Delivery</p>
+                        <p id="modal-sol" style="white-space: pre-line;">內容填充中...</p>
                     </div>
                 </div>
             </div>
             <div class="md:col-span-4 border-l border-zinc-200 pl-8">
-                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8">專案亮點 / Impact</p>
+                <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-8">專案成果 / Result</p>
                 <div id="modal-impact" class="space-y-12">
-                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -296,51 +292,48 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-y-48 md:gap-x-16 items-start">
             
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Brand Identity', 'JOJO FLOWER 品牌視覺設計', '以優雅細線條勾勒女性與花卉的交織，選用低飽和大地色調，建立品牌溫柔且高級的視覺識別。', '設計包含 Logo 標誌系統、名片印刷質感、實體門市招牌應用、系列包裝紙袋設計，以及職人工作圍裙情境。', '優雅高級 視覺識別', ['JOJO_Logo招牌應用情境圖.PNG', 'JOJO名片設計.PNG', 'JOJO名片設計-滿版.PNG', 'JOJO包裝應用情境-1.PNG', 'JOJO包裝應用情境-2.jpg', 'JOJO圍裙穿著應用情境圖-2.jpg', 'JOJO圍裙應用情境圖.PNG', 'JOJO圍裙穿著應用情境圖-2.PNG'])">
+                 onclick="openModal('Brand Identity', 'JOJO FLOWER 品牌識別設計', '【背景】女性創業者的花藝工作室，主打「男性送禮口袋名單」。\n【目標】透過視覺建立專業感與品牌信任。\n【受眾】追求精緻禮品的男性與女性。\n【限制】需在柔美氛圍中維持品牌權威。', '【策略】以流線單線條勾勒五官，融入蝴蝶符號暗示健康花材與品質。\n【AI 應用】用於探索版型配置與精緻線條的變體產出。\n【交付】Logo 系統、名片應用示意圖。', '成功建立 韓系精緻感', ['JOJO_Logo招牌應用情境圖.PNG', 'JOJO名片設計.PNG', 'JOJO名片設計-滿版.PNG', 'JOJO包裝應用情境-1.PNG', 'JOJO包裝應用情境-2.jpg', 'JOJO圍裙穿著應用情境圖-2.jpg', 'JOJO圍裙應用情境圖.PNG', 'JOJO圍裙穿著應用情境圖-2.PNG'])">
                 <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 relative">
-                    <div class="w-full h-full overflow-hidden">
-                        <img src="JOJO_Logo招牌應用情境圖.PNG" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="JOJO FLOWER 品牌設計">
-                    </div>
+                    <img src="JOJO_Logo招牌應用情境圖.PNG" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="JOJO FLOWER">
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
                     <div>
                         <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Brand Identity / Graphic Design</span>
-                        <h3 class="font-serif text-3xl">JOJO FLOWER 品牌視覺設計</h3>
+                        <h3 class="font-serif text-3xl">JOJO FLOWER 品牌識別設計</h3>
                     </div>
                     <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2026</p>
                 </div>
             </div>
+
             <div class="md:col-span-4 md:mt-60 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Branding Strategy', '逸角工程：傳統產業的視覺轉型', '本專案旨在重新定義傳統「拆除與防水工程」的品牌形象。透過視覺重塑，協助業主在保留施工專業的同時，建立出能吸引高端室內裝修市場的信賴感與品牌深度。', '設計核心以幾何線條重新詮釋「鏟子」與「房屋」的關係，並導入深藍與燙金配色提升視覺層次。除名片開發外，同步規劃 Polo 衫、工作背心與帆布袋周邊，將品牌視覺系統完整延伸至工程場域與日常接觸點。', '高端品牌 識別轉型', [ '程勝源-1-03.jpg', '程勝源-1-02.jpg', 'S__61349892_0.jpg', 'S__61349891_0.jpg'])">
+                 onclick="openModal('Branding Strategy', '逸角工程：品牌視覺識別', '【背景】年輕老闆創立的拆除與防水工程品牌。\n【目標】建立「一眼看懂」且可靠的工程專業形象。\n【受眾】屋主、工程承包商。\n【限制】需打破傳統工務店的沉重感。', '【策略】以房屋結合鏟子工具符號，藍色傳達穩定，金色點綴質感。\n【AI 應用】模擬名片在不同光影下的材質細節。\n【交付】標誌設計、名片與應用情境圖。', '極高辨識度 實體化採用', [ '程勝源-1-03.jpg', '程勝源-1-02.jpg', 'S__61349892_0.jpg', 'S__61349891_0.jpg'])">
                 <div class="overflow-hidden aspect-[3/4] editorial-border bg-zinc-100 relative">
-                    <img src="程勝源_應用情境圖.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="逸角工程封面">
+                    <img src="程勝源_應用情境圖.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="逸角工程">
                 </div>
                 <div class="mt-8">
                     <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Branding Strategy</span>
-                    <h3 class="font-serif text-2xl">逸角工程：品牌視覺識別系統設計</h3>
+                    <h3 class="font-serif text-2xl">逸角工程：品牌視覺識別</h3>
                 </div>
             </div>
 
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Brand Campaign', 'Chieu Faye：女性創業圓夢計畫', '針對捷運車廂廣告進行視覺開發，目標在傳達品牌的高級感與職涯女性的自信。此計畫致力於賦能女性創業者，在繁忙的城市移動中捕捉視覺焦點。', '採用低飽和度的優雅色調，並結合捷運車廂實景展現空間張力。考量捷運移動時的視覺停留點，優化掃碼位置與標語呈現比例，確保在動態環境下依然具備高識別度。', '10W+ 線下廣告曝光', ['IMG_2624.JPG', '三人.jpg', '妙智.jpg', 'nana.jpg', '羚安.jpg'])">
+                 onclick="openModal('Brand Campaign', 'Chieu Faye：捷運廣告視覺', '【背景】台灣女裝品牌挑戰交通媒體大型廣告。\n【目標】在高流量捷運站展現強大的時尚品牌張力。\n【受眾】捷運通勤族、時尚消費族群。\n【限制】需符合捷運刊登規範，且需極高解析度細節。', '【策略】深度轉譯品牌語彙，平衡規範與視覺張力。\n【AI 應用】用於影像高細節修整與光影色彩模擬。\n【交付】大型廣告看板完稿、品牌視覺定調。', '獲業主 高度認可', ['IMG_2624.JPG', '三人.jpg', '妙智.jpg', 'nana.jpg', '羚安.jpg'])">
                 <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 relative">
-                    <div class="w-full h-full overflow-hidden">
-                        <img src="IMG_2624.JPG" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="捷運海報專案封面">
-                    </div>
+                    <img src="IMG_2624.JPG" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="Chieu Faye">
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
                     <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Brand Campaign</span>
-                        <h3 class="font-serif text-3xl">Chieu Faye：捷運廣告視覺規劃</h3>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Brand Campaign / Large Format</span>
+                        <h3 class="font-serif text-3xl">Chieu Faye：捷運廣告視覺</h3>
                     </div>
                     <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2026</p>
                 </div>
             </div>
 
             <div class="md:col-span-4 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Branding Identity', '老店翻新：早稻田日式涮涮鍋', '這是一間經營超過 20 年的在地老店。業主期望在保留傳統親和力的前提下，透過品牌視覺重塑，讓店面呈現出現代、專業且具備溫馨感的「新老店」形象。', '除了設計全新活潑的品牌標誌系統，更規劃了系列包裝視覺。包含質感紙袋與封口貼紙設計，將火鍋 Icon 與日式簡約線條結合，確保品牌在實體接觸點上的視覺一致性。', '100% 品牌形象提升', ['早稻田店面logo示意圖.png', '包裝紙袋＿應用情境圖1.jpg', '包裝紙袋＿應用情境圖2.jpg', '包裝紙袋＿應用情境圖3.jpg'])">
+                 onclick="openModal('Branding Identity', '老店翻新：早稻田日式涮涮鍋', '【背景】欲尋求年輕化形象突破的老字號火鍋店。\n【目標】注入年輕氣息，吸引現代消費者共鳴。\n【受眾】全齡層消費者、追求質感的年輕族群。\n【限制】需在保留老店氛圍下進行視覺翻修。', '【策略】以「趣味化火鍋圖騰」作為視覺錨點。\n【AI 應用】模擬品牌圖騰應用於外帶包裝與店頭示意。\n【交付】店頭招牌、外帶包裝與品牌周邊。', '提升品牌 完整體驗感', ['早稻田店面logo示意圖.png', '包裝紙袋＿應用情境圖1.jpg', '包裝紙袋＿應用情境圖2.jpg', '包裝紙袋＿應用情境圖3.jpg'])">
                 <div class="overflow-hidden aspect-[3/4] editorial-border bg-zinc-100 relative">
-                    <img src="早稻田店面logo示意圖.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="早稻田火鍋封面">
+                    <img src="早稻田店面logo示意圖.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="早稻田">
                 </div>
                 <div class="mt-8">
                     <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Branding Identity</span>
@@ -349,37 +342,57 @@
             </div>
 
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Social Strategy', '漢聲電台：數位轉型規劃', '由於電台閱聽眾年齡層偏高，在擔任社群小編期間，致力於將傳統廣播內容進行數位化轉譯，目的是透過視覺媒體吸引更多年輕族群關注。', '導入 AI 工具建立高效工作流，將廣播節目音頻自動轉錄為逐字稿，並從年輕人視角出發，將內容重新策劃成雜誌風格的社群專欄圖文。', 'AI 驅動 工作流優化', ['識別證＿應用情境圖4.jpg', '識別證＿應用情境圖1.jpg', '識別證＿應用情境圖5.jpg'])">
+                 onclick="openModal('Social Strategy', '漢聲電台：數位轉型規劃', '【背景】面臨聽眾高齡化挑戰的傳統廣播媒體。\n【目標】透過翻新視覺與內容，吸引年輕族群關注。\n【受眾】數位媒體使用者、新一代聽眾。\n【限制】需處理大量音檔素材，時程緊迫。', '【策略】量身打造主持人封面，將音檔轉為年輕化專欄。\n【AI 應用】音檔轉逐字稿與 AI 文案結構優化。\n【交付】節目封面、社群圖文、識別證與證書。', '成功轉譯 傳統媒體內容', ['識別證＿應用情境圖2.jpg', '識別證＿應用情境圖4.jpg', '識別證＿應用情境圖1.jpg', '識別證＿應用情境圖5.jpg'])">
                 <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 relative">
-                    <img src="識別證＿應用情境圖2.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="漢聲電台專題封面">
+                    <img src="識別證＿應用情境圖2.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="漢聲電台">
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
                     <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Social Strategy</span>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Social Strategy / DX</span>
                         <h3 class="font-serif text-3xl">漢聲電台：數位轉型規劃</h3>
                     </div>
                     <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2025</p>
                 </div>
             </div>
 
+            <div class="md:col-span-4 md:mt-40 reveal project-card group cursor-pointer" 
+                 onclick="openModal('Illustration & Layout', '文化部：蘆竹社區營造計畫', '【背景】文化局主辦的青年社造培力課程。\n【目標】營造「城市是多元舞台」的一致性視覺。\n【受眾】在地青年、社造工作者。\n【策略】以格線象徵數位座標，建築符號營造慶典感。', '【AI 應用】協助輔助圖形的變體產出。\n【交付】主視覺海報、手冊與周邊小物。', '提升活動 參與氛圍', ['蘆洲計劃＿應用情境圖4.jpg', '蘆洲計劃＿應用情境圖３.jpg', '蘆洲計劃＿應用情境圖5.jpg', '蘆洲計劃＿應用情境圖6.jpg'])">
+                <div class="overflow-hidden aspect-[3/4] editorial-border bg-zinc-100 relative">
+                    <img src="蘆洲計劃＿應用情境圖4.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="文化部">
+                </div>
+                <div class="mt-8">
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Illustration & Layout</span>
+                    <h3 class="font-serif text-2xl">文化部：蘆竹社區營造計畫</h3>
+                </div>
+            </div>
+
             <div class="md:col-span-8 reveal project-card group cursor-pointer" 
-                 onclick="openModal('Illustration & Layout', '文化部：蘆竹社區營造計畫', '這是一個 113~114 年度的跨年度大型計畫，核心理念為「蘆竹，整個城市都是多元共融的舞台」。旨在透過視覺設計重新轉譯社區特色，增進在地居民與村落文化的連結。', '整合在地標誌性地標（如南崁教堂、五福宮等），設計出一系列具備故事性的手繪插畫與圖標（Icon）。並負責專案刊物的視覺排版規劃，將複雜的社區資訊轉化為易於閱讀的雜誌感版面。', '政府專案 完整視覺執行', ['蘆洲計劃＿應用情境圖３.jpg', '蘆洲計劃＿應用情境圖5.jpg', '蘆洲計劃＿應用情境圖6.jpg'])">
+                 onclick="openModal('Marketing Design', '木人艸：年度節慶專案', '【背景】主導公司春節、端午、中秋三大禮贈專案。\n【目標】整合設計與行銷，提升品牌整體節慶戰力。\n【受眾】企業採購、個人贈禮。\n【限制】需精準控管採購、發包執行時程。', '【策略】參與選品策略，落實一條龍包裝設計與發包。\n【AI 應用】影像二次創作，快速產出高品質情境圖。\n【交付】包裝視覺設計、預約系統網頁。', '降低成本 高效品質產出', ['muzentao_main.jpg', 'muzentao_pack.jpg'])">
                 <div class="overflow-hidden aspect-[16/10] editorial-border bg-zinc-100 relative">
-                    <div class="w-full h-full overflow-hidden">
-                        <img src="蘆洲計劃＿應用情境圖4.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="文化部：蘆竹社區營造計畫封面">
-                    </div>
+                    <img src="muzentao_main.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="木人艸年度專案">
                 </div>
                 <div class="mt-8 flex justify-between border-b border-zinc-100 pb-6">
                     <div>
-                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Illustration & Layout</span>
-                        <h3 class="font-serif text-3xl">文化部：蘆竹社區營造計畫</h3>
+                        <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Festive Marketing / Package Design</span>
+                        <h3 class="font-serif text-3xl">木人艸：年度節慶專案</h3>
                     </div>
-                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2024</p>
+                    <p class="text-[10px] tracking-[0.2em] opacity-40 uppercase md:text-right leading-loose italic">Case Study 2026</p>
                 </div>
             </div>
-            </div>
-    </section>
 
+            <div class="md:col-span-4 reveal project-card group cursor-pointer" 
+                 onclick="openModal('Spatial & Visual', 'Wabo Wabo 駐店專案', '【背景】公司首間進駐桃園水上樂園實體門市專案。\n【目標】在極短時程內完成全套空間與視覺規劃。\n【受眾】樂園遊客、家庭。\n【限制】僅 3 個月的極短時程壓力。', '【策略】統籌 CAD 繪圖與視覺形象系統開發。\n【AI 應用】輔助空間視覺模擬，加速決策進度。\n【交付】CAD 平面圖、菜單、海報與周邊商品。', '門市如期 順利營運', ['wabo_spatial.jpg', 'wabo_menu.jpg'])">
+                <div class="overflow-hidden aspect-[3/4] editorial-border bg-zinc-100 relative">
+                    <img src="wabo_spatial.jpg" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105" alt="Wabo Wabo 駐店專案">
+                </div>
+                <div class="mt-8">
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-accent font-bold mb-2 block">Spatial & Visual</span>
+                    <h3 class="font-serif text-2xl">Wabo Wabo 駐店專案</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
     <section class="py-40 px-8 md:px-20 border-t border-zinc-200 bg-zinc-900 text-white">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div class="md:col-span-4 reveal">
@@ -440,7 +453,6 @@
             }, 3200);
         });
 
-        // Helper: 創建標準化雜誌感圖片元素
         function createEditorialImg(src, customClass = "") {
             const img = document.createElement('img');
             img.src = src;
@@ -449,7 +461,6 @@
             return img;
         }
 
-        // Helper: 創建同步背景的展示框架
         function createFrame(content, extraClass = "") {
             const frame = document.createElement('div');
             frame.style.backgroundColor = 'var(--bg-color)';
@@ -462,7 +473,6 @@
             return frame;
         }
 
-        // Editorial Grid 動態渲染邏輯
         function openModal(cat, title, bg, sol, impact, imgs) {
             document.getElementById('modal-category').innerText = cat;
             document.getElementById('modal-title').innerText = title;
@@ -505,7 +515,6 @@
                 </div>
             `;
 
-            // [New] 動態插入 End-of-Stream CTA
             const ctaDiv = document.createElement('div');
             ctaDiv.className = 'mt-32 border-t border-zinc-100 pt-20 pb-40 flex flex-col items-center';
             ctaDiv.innerHTML = `
@@ -518,8 +527,6 @@
             
             document.getElementById('project-modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
-            
-            // 監聽鍵盤 Esc
             window.addEventListener('keydown', handleEsc);
         }
 
@@ -530,17 +537,13 @@
             window.removeEventListener('keydown', handleEsc);
         }
 
-        // [New] Keyboard Accessibility: ESC 鍵退出
         function handleEsc(e) {
             if (e.key === 'Escape') closeModal();
         }
 
-        // Cursor Logic
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-
-            // [New] 全域意圖游標判斷：若 Modal 開啟且游標在背景區
             const modal = document.getElementById('project-modal');
             if (modal.style.display === 'block') {
                 if (e.target.id === 'project-modal') {
@@ -553,7 +556,6 @@
             }
         });
 
-        // 按鈕縮放微交互
         document.querySelectorAll('button, a, .project-card').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 if (!cursor.classList.contains('close-mode')) cursor.style.transform = 'scale(4)';
